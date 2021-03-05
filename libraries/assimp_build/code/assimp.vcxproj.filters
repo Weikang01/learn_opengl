@@ -1,0 +1,1323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Assimp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BaseImporter.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BaseProcess.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PostStepRegistry.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ImporterRegistry.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DefaultIOStream.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DefaultIOSystem.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Importer.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SGSpatialSort.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\VertexTriangleAdjacency.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SpatialSort.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SceneCombiner.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ScenePreprocessor.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SkeletonMeshBuilder.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SplitByBoneCountProcess.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\StandardShapes.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\TargetAnimation.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\RemoveComments.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Subdivision.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Bitmap.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DefaultLogger.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Exporter.cpp">
+      <Filter>Exporter</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\AssimpCExport.cpp">
+      <Filter>Exporter</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\CalcTangentsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ComputeUVMappingProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ConvertToLHProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FindDegenerates.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FindInstancesProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FindInvalidDataProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FixNormalsStep.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\GenFaceNormalsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\GenVertexNormalsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PretransformVertices.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ImproveCacheLocality.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\JoinVerticesProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LimitBoneWeightsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\RemoveRedundantMaterials.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\RemoveVCProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SortByPTypeProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SplitLargeMeshes.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\TextureTransform.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\TriangulateProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ValidateDataStructure.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OptimizeGraph.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OptimizeMeshes.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DeboneProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ProcessHelper.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MakeVerboseFormat.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\3DSConverter.cpp">
+      <Filter>3DS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\3DSLoader.cpp">
+      <Filter>3DS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ACLoader.cpp">
+      <Filter>AC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ASELoader.cpp">
+      <Filter>ASE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ASEParser.cpp">
+      <Filter>ASE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\B3DImporter.cpp">
+      <Filter>B3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BVHLoader.cpp">
+      <Filter>BVH</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ColladaLoader.cpp">
+      <Filter>Collada</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ColladaParser.cpp">
+      <Filter>Collada</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ColladaExporter.cpp">
+      <Filter>Collada</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DXFLoader.cpp">
+      <Filter>DXF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\CSMLoader.cpp">
+      <Filter>CSM</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\HMPLoader.cpp">
+      <Filter>HMP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IRRLoader.cpp">
+      <Filter>Irr</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IRRMeshLoader.cpp">
+      <Filter>Irr</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IRRShared.cpp">
+      <Filter>Irr</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LWOAnimation.cpp">
+      <Filter>LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LWOBLoader.cpp">
+      <Filter>LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LWOLoader.cpp">
+      <Filter>LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LWOMaterial.cpp">
+      <Filter>LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LWSLoader.cpp">
+      <Filter>LWS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD2Loader.cpp">
+      <Filter>MD2</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD3Loader.cpp">
+      <Filter>MD3</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD5Loader.cpp">
+      <Filter>MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD5Parser.cpp">
+      <Filter>MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MDCLoader.cpp">
+      <Filter>MDC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MDLLoader.cpp">
+      <Filter>MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MDLMaterialLoader.cpp">
+      <Filter>MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MaterialSystem.cpp">
+      <Filter>MaterialSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\NFFLoader.cpp">
+      <Filter>NFF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OFFLoader.cpp">
+      <Filter>OFFFormat</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjFileImporter.cpp">
+      <Filter>Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjFileMtlImporter.cpp">
+      <Filter>Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjFileParser.cpp">
+      <Filter>Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjExporter.cpp">
+      <Filter>Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreImporter.cpp">
+      <Filter>Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreStructs.cpp">
+      <Filter>Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreBinarySerializer.cpp">
+      <Filter>Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreXmlSerializer.cpp">
+      <Filter>Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreMaterial.cpp">
+      <Filter>Ogre</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PlyLoader.cpp">
+      <Filter>Ply</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PlyParser.cpp">
+      <Filter>Ply</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PlyExporter.cpp">
+      <Filter>Ply</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Q3DLoader.cpp">
+      <Filter>Q3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Q3BSPFileParser.cpp">
+      <Filter>Q3BSP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Q3BSPFileImporter.cpp">
+      <Filter>Q3BSP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Q3BSPZipArchive.cpp">
+      <Filter>Q3BSP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\RawLoader.cpp">
+      <Filter>Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SMDLoader.cpp">
+      <Filter>SMD</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\STLLoader.cpp">
+      <Filter>STL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\STLExporter.cpp">
+      <Filter>STL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\TerragenLoader.cpp">
+      <Filter>Terragen</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\UnrealLoader.cpp">
+      <Filter>Unreal</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\XFileImporter.cpp">
+      <Filter>XFile</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\XFileParser.cpp">
+      <Filter>XFile</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MS3DLoader.cpp">
+      <Filter>MS3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\COBLoader.cpp">
+      <Filter>COB</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderLoader.cpp">
+      <Filter>BLENDER</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderDNA.cpp">
+      <Filter>BLENDER</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderScene.cpp">
+      <Filter>BLENDER</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderModifier.cpp">
+      <Filter>BLENDER</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderBMesh.cpp">
+      <Filter>BLENDER</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderTessellator.cpp">
+      <Filter>BLENDER</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\NDOLoader.cpp">
+      <Filter>NDO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCLoader.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCReaderGen.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCUtil.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCGeometry.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCMaterial.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCProfile.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCCurve.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCBoolean.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCOpenings.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\STEPFileReader.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\STEPFileEncoding.cpp">
+      <Filter>IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\XGLLoader.cpp">
+      <Filter>XGL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXImporter.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXParser.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXTokenizer.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXConverter.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXUtil.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXDocument.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXProperties.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXMeshGeometry.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXMaterial.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXModel.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXAnimation.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXNodeAttribute.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXDeformer.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXBinaryTokenizer.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXDocumentUtil.cpp">
+      <Filter>FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\irrXML\irrXML.cpp">
+      <Filter>IrrXML</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\ConvertUTF\ConvertUTF.c">
+      <Filter>ConvertUTF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\unzip\ioapi.c">
+      <Filter>unzip</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\unzip\unzip.c">
+      <Filter>unzip</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\common\shapes.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\sweep\advancing_front.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\sweep\cdt.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\sweep\sweep.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\sweep\sweep_context.cc">
+      <Filter>Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\clipper\clipper.cpp">
+      <Filter>Clipper</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\AssimpPCH.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\fast_atof.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\qnan.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BaseImporter.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BaseProcess.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Importer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ScenePrivate.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ByteSwap.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DefaultProgressHandler.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DefaultIOStream.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DefaultIOSystem.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\CInterfaceIOWrapper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Hash.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFF.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MemoryIOWrapper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ParsingUtils.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\StreamReader.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\StringComparison.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SGSpatialSort.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\VertexTriangleAdjacency.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\GenericProperty.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SpatialSort.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SceneCombiner.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ScenePreprocessor.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SkeletonMeshBuilder.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SplitByBoneCountProcess.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SmoothingGroups.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\StandardShapes.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\TargetAnimation.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\RemoveComments.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Subdivision.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Vertex.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LineSplitter.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\TinyFormatter.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Profiler.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LogAux.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Bitmap.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\DefaultLogger.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\LogStream.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\Logger.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\NullLogger.hpp">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Win32DebugLogStream.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FileLogStream.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\StdOStreamLogStream.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlobIOSystem.h">
+      <Filter>Exporter</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\CalcTangentsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ComputeUVMappingProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ConvertToLHProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FindDegenerates.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FindInstancesProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FindInvalidDataProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FixNormalsStep.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\GenFaceNormalsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\GenVertexNormalsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PretransformVertices.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ImproveCacheLocality.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\JoinVerticesProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LimitBoneWeightsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\RemoveRedundantMaterials.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\RemoveVCProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SortByPTypeProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SplitLargeMeshes.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\TextureTransform.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\TriangulateProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ValidateDataStructure.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OptimizeGraph.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OptimizeMeshes.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DeboneProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ProcessHelper.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PolyTools.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MakeVerboseFormat.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\3DSHelper.h">
+      <Filter>3DS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\3DSLoader.h">
+      <Filter>3DS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ACLoader.h">
+      <Filter>AC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ASELoader.h">
+      <Filter>ASE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ASEParser.h">
+      <Filter>ASE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\B3DImporter.h">
+      <Filter>B3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BVHLoader.h">
+      <Filter>BVH</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ColladaHelper.h">
+      <Filter>Collada</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ColladaLoader.h">
+      <Filter>Collada</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ColladaParser.h">
+      <Filter>Collada</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ColladaExporter.h">
+      <Filter>Collada</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DXFLoader.h">
+      <Filter>DXF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\DXFHelper.h">
+      <Filter>DXF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\CSMLoader.h">
+      <Filter>CSM</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\HMPFileData.h">
+      <Filter>HMP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\HMPLoader.h">
+      <Filter>HMP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\HalfLifeFileData.h">
+      <Filter>HMP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IRRLoader.h">
+      <Filter>Irr</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IRRMeshLoader.h">
+      <Filter>Irr</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IRRShared.h">
+      <Filter>Irr</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LWOAnimation.h">
+      <Filter>LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LWOFileData.h">
+      <Filter>LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LWOLoader.h">
+      <Filter>LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\LWSLoader.h">
+      <Filter>LWS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD2FileData.h">
+      <Filter>MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD2Loader.h">
+      <Filter>MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD2NormalTable.h">
+      <Filter>MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD3FileData.h">
+      <Filter>MD3</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD3Loader.h">
+      <Filter>MD3</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD5Loader.h">
+      <Filter>MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD5Parser.h">
+      <Filter>MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MDCFileData.h">
+      <Filter>MDC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MDCLoader.h">
+      <Filter>MDC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MDCNormalTable.h">
+      <Filter>MDC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MDLDefaultColorMap.h">
+      <Filter>MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MDLFileData.h">
+      <Filter>MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MDLLoader.h">
+      <Filter>MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MaterialSystem.h">
+      <Filter>MaterialSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\NFFLoader.h">
+      <Filter>NFF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OFFLoader.h">
+      <Filter>OFFFormat</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjFileData.h">
+      <Filter>Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjFileImporter.h">
+      <Filter>Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjFileMtlImporter.h">
+      <Filter>Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjFileParser.h">
+      <Filter>Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjTools.h">
+      <Filter>Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\ObjExporter.h">
+      <Filter>Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreImporter.h">
+      <Filter>Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreStructs.h">
+      <Filter>Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreParsingUtils.h">
+      <Filter>Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreBinarySerializer.h">
+      <Filter>Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\OgreXmlSerializer.h">
+      <Filter>Ogre</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PlyLoader.h">
+      <Filter>Ply</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PlyParser.h">
+      <Filter>Ply</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\PlyExporter.h">
+      <Filter>Ply</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Q3DLoader.h">
+      <Filter>Q3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Q3BSPFileData.h">
+      <Filter>Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Q3BSPFileParser.h">
+      <Filter>Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Q3BSPFileImporter.h">
+      <Filter>Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\Q3BSPZipArchive.h">
+      <Filter>Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\RawLoader.h">
+      <Filter>Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\SMDLoader.h">
+      <Filter>SMD</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\STLLoader.h">
+      <Filter>STL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\STLExporter.h">
+      <Filter>STL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\TerragenLoader.h">
+      <Filter>Terragen</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\UnrealLoader.h">
+      <Filter>Unreal</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\XFileHelper.h">
+      <Filter>XFile</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\XFileImporter.h">
+      <Filter>XFile</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\XFileParser.h">
+      <Filter>XFile</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MD4FileData.h">
+      <Filter>Extra</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\MS3DLoader.h">
+      <Filter>MS3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\COBLoader.h">
+      <Filter>COB</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\COBScene.h">
+      <Filter>COB</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderLoader.h">
+      <Filter>BLENDER</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderDNA.h">
+      <Filter>BLENDER</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderDNA.inl">
+      <Filter>BLENDER</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderScene.h">
+      <Filter>BLENDER</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderSceneGen.h">
+      <Filter>BLENDER</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderIntermediate.h">
+      <Filter>BLENDER</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderModifier.h">
+      <Filter>BLENDER</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderBMesh.h">
+      <Filter>BLENDER</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BlenderTessellator.h">
+      <Filter>BLENDER</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\NDOLoader.h">
+      <Filter>NDO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCLoader.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCReaderGen.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\IFCUtil.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\STEPFile.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\STEPFileReader.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\STEPFileEncoding.h">
+      <Filter>IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\XGLLoader.h">
+      <Filter>XGL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXCompileConfig.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXImporter.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXParser.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXTokenizer.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXImportSettings.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXConverter.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXUtil.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXDocument.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\FBXProperties.h">
+      <Filter>FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\irrXMLWrapper.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\irrXML\CXMLReaderImpl.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\irrXML\heapsort.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\irrXML\irrArray.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\irrXML\irrString.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\irrXML\irrTypes.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\irrXML\irrXML.h">
+      <Filter>IrrXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\ConvertUTF\ConvertUTF.h">
+      <Filter>ConvertUTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\unzip\crypt.h">
+      <Filter>unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\unzip\ioapi.h">
+      <Filter>unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\unzip\unzip.h">
+      <Filter>unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\common\shapes.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\common\utils.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\sweep\advancing_front.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\sweep\cdt.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\sweep\sweep.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\poly2tri\poly2tri\sweep\sweep_context.h">
+      <Filter>Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\contrib\clipper\clipper.hpp">
+      <Filter>Clipper</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\math\common_factor_rt.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\foreach.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\format.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\scoped_array.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\scoped_ptr.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\shared_array.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\shared_ptr.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\make_shared.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\static_assert.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\BoostWorkaround\boost\tuple\tuple.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\anim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\ai_assert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\color4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\color4.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\cfileio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\material.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\matrix3x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\matrix3x3.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\matrix4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\matrix4x4.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\postprocess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\quaternion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\quaternion.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\metadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\vector2.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\vector3.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\cimport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\importerdesc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\Importer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\ProgressHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\IOStream.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\IOSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\cexport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\Exporter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\Compiler\pushpack1.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\Compiler\poppack1.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\include\assimp\Compiler\pstdint.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\LakeheadUCourse\comp_proj\learn_opengl\libraries\assimp-3.1.1\code\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="3DS">
+      <UniqueIdentifier>{852EFF1B-6212-3FBA-A595-B987A6DC4C6C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AC">
+      <UniqueIdentifier>{6F8AA250-A832-3364-A5A3-88E74C636217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ASE">
+      <UniqueIdentifier>{C6278E4B-8F23-3A15-BA1C-5D686FF7819E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="B3D">
+      <UniqueIdentifier>{8A77949A-7EBA-3CF8-BB7B-2166D6C177FC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BLENDER">
+      <UniqueIdentifier>{382BBCBB-6D5E-350C-AA11-B13A085E5789}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BVH">
+      <UniqueIdentifier>{38B6D63B-3AD9-32FC-8A5E-ED2A453A8693}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Boost">
+      <UniqueIdentifier>{E62D3FA1-A302-3E34-B50F-C14C8DD943FE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="COB">
+      <UniqueIdentifier>{1DF33118-7B18-3E07-BB3D-2A7724569034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CSM">
+      <UniqueIdentifier>{29A231A7-49D3-372A-B7B1-8941EBB8668A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Clipper">
+      <UniqueIdentifier>{A31AFC1F-FA77-3A8A-90B9-478755525C2C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collada">
+      <UniqueIdentifier>{14361435-DD5D-3843-B1D4-FC0EB07E8957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{DD8AC417-20DA-330D-8957-3FED49CB72D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Compiler">
+      <UniqueIdentifier>{158284D7-16D6-33F3-87C3-DD0475F11E84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConvertUTF">
+      <UniqueIdentifier>{8464FDE2-A4C3-325B-91CE-4E386990D8F8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DXF">
+      <UniqueIdentifier>{CE0CE012-5520-3A39-98CB-72BD88BDA695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exporter">
+      <UniqueIdentifier>{B3C69722-4723-3DD4-9B73-6B1E0D3C7C0A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extra">
+      <UniqueIdentifier>{5AB921B7-37D9-3E4B-8317-9927241EF453}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FBX">
+      <UniqueIdentifier>{1DEB2F95-2AEA-3EAC-8F71-2517AF24F5DF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HMP">
+      <UniqueIdentifier>{315240C2-03C6-39B0-A7CE-012D1F9B9CBA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{316B6C08-D6B3-3177-8C30-E2BA6800718D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IFC">
+      <UniqueIdentifier>{66F6BFC5-312E-3D6D-8F57-0F942C265A09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Irr">
+      <UniqueIdentifier>{757F5A69-C060-3F91-8B52-FBC3579AA7FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IrrXML">
+      <UniqueIdentifier>{D2878617-4AAF-31BB-BFFA-6A36E7A844D0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LWO">
+      <UniqueIdentifier>{58CC3E2B-D920-3FD1-8D87-65AAD48ACA5F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LWS">
+      <UniqueIdentifier>{A0741EA6-E873-3685-8963-A9153E01DDD0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{0219E8CA-4CAE-33B2-8675-5F34040D29EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MD2">
+      <UniqueIdentifier>{1F3FE88B-BFE1-30D5-9A0C-C1A212D02836}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MD3">
+      <UniqueIdentifier>{F565BBE3-EEF6-363A-BE1B-F5F4A87F2381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MD5">
+      <UniqueIdentifier>{B2EB92A4-859E-3D7E-A14A-4538C41ED970}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MDC">
+      <UniqueIdentifier>{B6D5C209-4CCB-3545-9831-E057341C2DDA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MDL">
+      <UniqueIdentifier>{EC2DF6EC-0CE9-3C47-8435-7315C740887D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MS3D">
+      <UniqueIdentifier>{0DD5963A-BE30-36A9-84FD-ADDDBCB97AD5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MaterialSystem">
+      <UniqueIdentifier>{8403111E-752B-3484-86DB-470071CC1118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NDO">
+      <UniqueIdentifier>{59FB9A2C-0A71-3761-8F74-4809CD00A319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NFF">
+      <UniqueIdentifier>{FEF5D226-937D-3230-9CB6-BDED2376BA28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OFFFormat">
+      <UniqueIdentifier>{2F8F6FAF-FEF4-3A7D-98DC-784C0723531A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj">
+      <UniqueIdentifier>{3298879E-195D-348E-92D4-27BE733CE1CC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ogre">
+      <UniqueIdentifier>{25A28FC6-D91F-3EB9-B688-4B314BA6575B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ply">
+      <UniqueIdentifier>{4FE83717-94A0-3A6F-86BC-47EB1C4274EC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Poly2Tri">
+      <UniqueIdentifier>{F700E6A9-E50E-3333-88C8-071DC0488AEA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PostProcessing">
+      <UniqueIdentifier>{E0FFDFBA-7F79-3B2F-BB81-A020E6482568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Q3BSP">
+      <UniqueIdentifier>{861A3ED7-66D3-3A48-9B5A-5EBE0077DE10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Q3D">
+      <UniqueIdentifier>{4E7472DF-A32E-3D6D-A323-B486A6F5B860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Raw">
+      <UniqueIdentifier>{9EA1A465-BF21-3940-AC6B-CA2BB31FD209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SMD">
+      <UniqueIdentifier>{62CD743F-2CC2-329D-922A-96D87FF96AB5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STL">
+      <UniqueIdentifier>{D67FFBA9-8932-3B6E-8463-454B3FAD66C1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E326400C-E9B4-359D-9DC0-5030145AF5F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Terragen">
+      <UniqueIdentifier>{63FD9F06-57A1-3154-AEDF-E297C6DC6B35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unreal">
+      <UniqueIdentifier>{AF6EB164-34F6-3433-8BA2-4DB1B81C07D3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XFile">
+      <UniqueIdentifier>{DE7F0C6F-E30A-36D4-A1A2-39860FDAFB6A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XGL">
+      <UniqueIdentifier>{5F82C017-A98E-33D5-8C50-AB2507AF2651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="unzip">
+      <UniqueIdentifier>{BE8B1D06-1A38-36E5-94CA-B1DC9B1CDE53}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
