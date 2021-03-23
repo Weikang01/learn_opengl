@@ -149,28 +149,59 @@
     <ClCompile Include="Libs.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Structures.cpp" />
-    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Libs.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Primitive.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Structures.h" />
-    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cubemap_fragment.glsl" />
+    <None Include="cubemap_vertex.glsl" />
+    <None Include="explode_fragment.glsl" />
+    <None Include="explode_geometry.glsl" />
+    <None Include="explode_vertex.glsl" />
     <None Include="fragment_core.glsl" />
+    <None Include="fragment_modelLoading.glsl" />
+    <None Include="fragment_screen.glsl" />
+    <None Include="fragment_singleColor.glsl" />
+    <None Include="fragment_singleTex.glsl" />
+    <None Include="fragment_skybox.glsl" />
+    <None Include="frontFacing_fragment.glsl" />
+    <None Include="frontFacing_vertex.glsl" />
+    <None Include="instance_fragment.glsl" />
+    <None Include="instance_vertex.glsl" />
     <None Include="lamp_fragment.glsl" />
     <None Include="lighting_fragment.glsl" />
     <None Include="lighting_vertex.glsl" />
+    <None Include="normal_fragment.glsl" />
+    <None Include="normal_geometry.glsl" />
+    <None Include="normal_vertex.glsl" />
+    <None Include="pass_through_fragment.glsl" />
+    <None Include="pass_through_geometry.glsl" />
+    <None Include="pass_through_vertex.glsl" />
+    <None Include="pointSize_fragment.glsl" />
+    <None Include="pointSize_vertex.glsl" />
+    <None Include="reflex_fragment.glsl" />
+    <None Include="reflex_vertex.glsl" />
+    <None Include="rock_fragment.glsl" />
+    <None Include="rock_vertex.glsl" />
+    <None Include="test_geometry.glsl" />
     <None Include="vertex_core.glsl" />
+    <None Include="vertex_modelLoading.glsl" />
+    <None Include="vertex_screen.glsl" />
+    <None Include="vertex_skybox.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

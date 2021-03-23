@@ -28,10 +28,10 @@ struct DirLight
 	glm::vec3 diffuse  ;
 	glm::vec3 specular ;
 	DirLight(const string& name,
-		glm::vec3 direction = glm::vec3(),
-		glm::vec3 ambient   = glm::vec3(),
-		glm::vec3 diffuse   = glm::vec3(),
-		glm::vec3 specular  = glm::vec3())
+		glm::vec3 direction = glm::vec3(-0.2f , -1.0f , -0.3f ),
+		glm::vec3 ambient   = glm::vec3( 0.05f,  0.05f,  0.05f),
+		glm::vec3 diffuse   = glm::vec3( 0.4f ,  0.4f ,  0.4f ),
+		glm::vec3 specular  = glm::vec3( 0.5f ,  0.5f ,  0.5f ))
 		:
 		name     (name     ),
 		direction(direction),
@@ -61,10 +61,10 @@ struct PointLight
 	PointLight(
 		//glm::vec3 direction = glm::vec3(),
 		const string& name,
-		glm::vec3 position  = glm::vec3(),
-		glm::vec3 ambient   = glm::vec3(),
-		glm::vec3 diffuse   = glm::vec3(),
-		glm::vec3 specular  = glm::vec3(),
+		glm::vec3 position  = glm::vec3(1.5f, 0.2f, -1.5f),
+		glm::vec3 ambient   = glm::vec3(0.05f, 0.05f, 0.05f),
+		glm::vec3 diffuse   = glm::vec3(0.8f, 0.8f, 0.8f),
+		glm::vec3 specular  = glm::vec3(1.0f, 1.0f, 1.0f),
 		float     constant  = 1.f        ,
 		float     linear    = .09f       ,
 		float     quadratic = .032f
