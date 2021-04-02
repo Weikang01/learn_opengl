@@ -20,6 +20,8 @@ public:
 		RIGHT
 	};
 	glm::vec3 Position;
+	float Yaw;
+	float Pitch;
 private:
 	unsigned int viewID;
 	glm::vec3 Front;
@@ -27,8 +29,6 @@ private:
 	glm::vec3 Up;
 	glm::vec3 WorldUp;
 
-	float Yaw;
-	float Pitch;
 	// camera options
 	float CameraSpeed;
 	float MouseSensitivity;
@@ -37,9 +37,7 @@ private:
 	float Aspect;
 
 	void UpdateVectors();
-
 public:
-
 	Camera(float aspect, glm::vec3 position = glm::vec3{ 0.f },
 		glm::vec3 up = glm::vec3{0.f, 1.f, 0.f}, 
 		float yaw = CAMERA_YAW, float pitch = CAMERA_PITCH, 
