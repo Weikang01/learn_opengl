@@ -4,8 +4,38 @@
 #include "Structures.h"
 #include "Primitive.h"
 
-GLuint loadTexture(const GLchar* path);
-GLuint loadCubeMap(const vector<const GLchar*>& texture_faces);
+#define ASSERT(x) if(!(x)) __debugbreak();
+#define GLCall(x) GLClearError();\
+	x;\
+	ASSERT(GLLogCall(#x, __FILE__, __LINE__))
+
+void GLClearError()
+{
+	while (glGetError() != GL_NO_ERROR);
+}
+
+bool GLLogCall(const char* function, const char* file, int line)
+{
+	while (GLenum error = glGetError())
+	{
+		cout << "[OpenGL Error] (" << error << "): " << function << " " << file << endl;
+		return false;
+	}
+	return true;
+}
+
+
+vector<glm::vec3> cubePositions
+{
+	glm::vec3( 4.0f, -3.5f,  0.0f),
+	glm::vec3( 2.0f,  3.0f,  1.0f),
+	glm::vec3(-3.0f, -1.0f,  0.0f),
+	glm::vec3(-1.5f,  1.0f,  1.5f),
+	glm::vec3(-1.5f,  2.0f, -3.0f)
+};
+
+GLuint loadTexture(const GLchar* path, bool gamma = false);
+GLuint loadCubeMap(const vector<const GLchar*>& texture_faces, bool gamma = false);
 GLuint generateMultiSampleTexture(GLuint samples);
 GLuint generateAttachmentTexture(GLboolean depth, GLboolean stencil);
 glm::mat3 getNormalMat(const glm::mat4& model);
@@ -18,6 +48,10 @@ Camera camera((float)screen_width / screen_height, glm::vec3(0.0f, 0.0f, 3.0f));
 bool keys[1024]{ false };
 float lastX, lastY;
 
+// Options
+GLboolean shadows = true;
+
+void drawScene(Shader& shader, Mesh& mesh);
 vector<glm::vec3> grassPos{
 	glm::vec3(-1.5f, 0.0f, -0.48f),
 	glm::vec3(1.5f, 0.0f, 0.51f)  ,
@@ -25,7 +59,6 @@ vector<glm::vec3> grassPos{
 	glm::vec3(-0.3f, 0.0f, -2.3f) ,
 	glm::vec3(0.5f, 0.0f, -0.6f)
 };
-
 
 int main()
 {
@@ -35,615 +68,152 @@ int main()
 	glfwSetCursorPosCallback(main_program.window(), cursorPosCallback);
 	glfwSetScrollCallback(main_program.window(), scrollCallback);
 	
-	//glDepthFunc(GL_ALWAYS);
+	// Setup some OpenGL options
 	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-
-	glEnable(GL_PROGRAM_POINT_SIZE);
-
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_MULTISAMPLE);
-	glDepthFunc(GL_LEQUAL);
-	//glEnable(GL_STENCIL_TEST);
-	//glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-	//glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+	glCullFace(GL_BACK);
+	//glEnable(GL_PROGRAM_POINT_SIZE);
+	//glEnable(GL_MULTISAMPLE);
+	//glDepthFunc(GL_LEQUAL);
 
-	//Shader shader("vertex_modelLoading.glsl", "fragment_modelLoading.glsl");
-	Shader colorShader("vertex_core.glsl", "fragment_singleColor.glsl");
-	//Shader singleColorShader("vertex_modelLoading.glsl", "fragment_singleColor.glsl");
-	Shader screenShader("vertex_screen.glsl", "fragment_screen.glsl");
-	//Shader skyboxShader("vertex_skybox.glsl", "fragment_skybox.glsl");
-	//Shader diffuseShader("vertex_core.glsl", "fragment_core.glsl");
-	//Shader instanceShader("rock_vertex.glsl", "rock_fragment.glsl");
-	//Shader reflexShader("reflex_vertex.glsl", "reflex_fragment.glsl");
-	//Shader cubemapShader("cubemap_vertex.glsl","cubemap_fragment.glsl");
-	//Shader pointSizeShader("pointSize_vertex.glsl", "pointSize_fragment.glsl");
-	//Shader frontFacingShader("frontFacing_vertex.glsl", "frontFacing_fragment.glsl");
-	//Shader testGeoShader("pass_through_vertex.glsl", "pass_through_fragment.glsl", "pass_through_geometry.glsl");
-	//Shader explodeShader("normal_vertex.glsl", "normal_fragment.glsl", "normal_geometry.glsl");
-	//Shader instanceShader("instance_vertex.glsl", "instance_fragment.glsl");
-	// Create a uniform buffer object
+	glViewport(0, 0, screen_width, screen_height);
+
+	// Setup and compile our shaders
+	Shader shader("point_shadows_vertex.glsl", "point_shadows_fragment.glsl");
+	Shader simpleDepthShader("cubeDepth_vertices.glsl", "cubeDepth_fragment.glsl", "cubeDepth_geometry.glsl");
+
 	// First. We get the relevant block indices
-	GLuint uniformBlockIndexColor       = colorShader.getUniformBlockIndex("Matrices");
-	//GLuint uniformBlockIndexDiffuse       = diffuseShader.getUniformBlockIndex("Matrices");
-	//GLuint uniformBlockIndexInstance      = instanceShader.getUniformBlockIndex("Matrices");
-	//GLuint uniformBlockIndexSkybox        = skyboxShader.getUniformBlockIndex("Matrices");
-	//GLuint uniformBlockIndexPointSize     = pointSizeShader.getUniformBlockIndex("Matrices");
-	//GLuint uniformBlockIndexFrontFacing = frontFacingShader.getUniformBlockIndex("Matrices");
-	//GLuint uniformBlockIndexExplode = explodeShader.getUniformBlockIndex("Matrices");
-	//GLuint uniformBlockIndexTestGeoShader = testGeoShader.getUniformBlockIndex("Matrices");
-
-
+	GLuint uniformBlockIndexShader = shader.getUniformBlockIndex("Matrices");
 	// Then we link each shader's uniform block to this uniform binding point
-	colorShader.uniformBlockBinding(uniformBlockIndexColor, 0);
-	//skyboxShader.uniformBlockBinding(uniformBlockIndexSkybox, 0);
-	//diffuseShader.uniformBlockBinding(uniformBlockIndexDiffuse, 0);
-	//instanceShader.uniformBlockBinding(uniformBlockIndexInstance, 0);
-	//pointSizeShader.uniformBlockBinding(uniformBlockIndexPointSize, 0);
-	//frontFacingShader.uniformBlockBinding(uniformBlockIndexFrontFacing, 0);
-	//explodeShader.uniformBlockBinding(uniformBlockIndexExplode, 0);
-	//testGeoShader.uniformBlockBinding(uniformBlockIndexTestGeoShader, 0);
-	
+	shader.uniformBlockBinding(uniformBlockIndexShader, 0);
+
 	// Now actually create the buffer
 	GLuint uboMatrices;
 	glGenBuffers(1, &uboMatrices);
 	glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
 	glBufferData(GL_UNIFORM_BUFFER, 2 * sizeof(glm::mat4), NULL, GL_STATIC_DRAW);
 	glBindBuffer(GL_UNIFORM_BUFFER, 0);
-	// Define the range of the buffer that links to a uniform binding point
-	glBindBufferRange(GL_UNIFORM_BUFFER, 0, uboMatrices,0, 2 * sizeof(glm::mat4));
+
+	glBindBufferRange(GL_UNIFORM_BUFFER, 0, uboMatrices, 0, 2 * sizeof(glm::mat4));
 
 	// texture
-	Texture texCube;
-	Texture texFloor;
-	Texture texGrass;
-	Texture texSkybox;
+	Texture texWood;
+	texWood.id = loadTexture("Images/wood.png", true);
+	texWood.type = "texture_diffuse";
 
-	texCube.id = loadTexture("Images/pattern4diffuseblack.jpg");
-	texCube.type = "texture_diffuse";
 
-	texFloor.id = loadTexture("Images/metal.png");
-	texFloor.type = "texture_diffuse";
-
-	texGrass.id = loadTexture("Images/grass.png");
-	texGrass.type = "texture_diffuse";
-
-	vector<const GLchar*> faces;
-	faces.push_back("Images/skybox/left.jpg");
-	faces.push_back("Images/skybox/right.jpg");
-	faces.push_back("Images/skybox/top.jpg");
-	faces.push_back("Images/skybox/bottom.jpg");
-	faces.push_back("Images/skybox/back.jpg");
-	faces.push_back("Images/skybox/front.jpg");
-	texSkybox.id = loadCubeMap(faces);
-	texSkybox.type = "skybox";
+	// generate a frame buffer object for depth map
+	const GLuint SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
+	GLuint depthMapFBO;
+	glGenFramebuffers(1, &depthMapFBO);
+	// Create depth cubemap texture
+	Texture depthCubemap;
+	depthCubemap.type = "depthCubeMap";
+	glGenTextures(1, &depthCubemap.id);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap.id);
+	for (GLuint i = 0; i < 6; ++i)
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	// Attach cubemap as depth map FBO's color buffer
+	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthCubemap.id, 0);
+	glDrawBuffer(GL_NONE);
+	glReadBuffer(GL_NONE);
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		std::cout << "Framebuffer not complete!" << std::endl;
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	// mesh
-	//vector<Texture> cubeTexture{ texCube };
 	Mesh cube(Prim::cubeVertices);
-	Mesh screen(Prim::quadVertices);
-	//vector<Texture> floorTexture{ texFloor };
-	//Mesh floor(Prim::planeVertices, floorTexture);
-	//vector<Texture> grassTexture{ texGrass };
-	//Mesh grass(Prim::transparentVertices, grassTexture);
-	//vector<Texture> skyboxTexture{ texSkybox };
-	//Mesh skybox(Prim::skyboxVertices, skyboxTexture);
-	//Mesh cube(Prim::cubeVertices, skyboxTexture);
-	//vector<Texture> testGeoTexture{};
-	//Mesh testGeoMesh(Prim::pointsVertices, testGeoTexture);
-	//cube.add_texture(texCube);
-	//cube.add_texture(texFloor);
-	//Model ourModel("Models/nanosuit/nanosuit.obj");
-	//Model planet("Models/planet/planet.obj");
-	//Model rock("Models/rock/rock.obj");
-	//ourModel.add_texture(texSkybox);
-	//glm::vec2 translations[100]{};
-	//vector<glm::vec2>translations{};
-	//int index = 0;
-	//GLfloat offset = .1f;
-	//for (GLint y = -10; y < 10; y += 2)
-	//{
-	//	for (GLint x = -10; x < 10; x += 2)
-	//	{
-	//		glm::vec2 translation{};
-	//		translation.x = (GLfloat)x / 10.f + offset;
-	//		translation.y = (GLfloat)y / 10.f + offset;
-	//		translations.push_back(translation);
-	//	}
-	//}
-	////instanceShader.use();
-	//Mesh instances(Prim::smallScreenVertices);
-	//instances.instantiate(100);
-	//instances.setInstanceUniform(instanceShader, translations, "offsets");
+	cube.add_texture(texWood);
+	cube.add_texture(depthCubemap);
 
-	//glBindVertexArray(instances.VAO);
-	//glBindBuffer(GL_ARRAY_BUFFER, instances.instanceVBO);
-	//glVertexAttribPointer(5, 2, GL_FLOAT, GL_FALSE, sizeof(glm::vec2), (GLvoid*)0);
-	//glBindBuffer(GL_ARRAY_BUFFER, 0);
-	//glVertexAttribDivisor(2, 1); // Tell OpenGL this is an instanced vertex attribute.
-	//glBindVertexArray(0);
+	// Set texture samples
+	//shader.use();
+	//shader.setInt("diffuseTexture", 0);
+	//shader.setInt("depthMap", 1);
 
-	// Generate a large list of semi-random model transformation matrices
-	//GLuint amount = 10000;
-	//glm::mat4* modelMatrices;
-	//modelMatrices = new glm::mat4[amount];
-	//srand(glfwGetTime());
-	//GLfloat radius = 50.f;
-	//GLfloat offset = 2.5f;
-	//for (size_t i = 0; i < amount; i++)
-	//{
-	//	glm::mat4 model(1.f);
-	//	// 1. Translation: displace along circle with 'radius' in range [-offset, offset]
-	//	GLfloat angle = (GLfloat)i / (GLfloat)amount * 360.f;
-	//	GLfloat displacement = (rand() % (GLint)(2 * offset * 100)) / 100.f - offset;
-	//	GLfloat x = sin(angle) * radius + displacement;
-	//	displacement = (rand() % (GLint)(2 * offset * 100)) / 100.f - offset;
-	//	GLfloat y = displacement * .4f; // Keep height of asteroid field smaller compared to width of x and z
-	//	displacement = (rand() % (GLint)(2 * offset * 100)) / 100.f - offset;
-	//	GLfloat z = cos(angle) * radius + displacement;
-	//	model = glm::translate(model, glm::vec3(x, y, z));
+	// Light source
+	glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 
-	//	// 2. Scale: Scale between 0.05 and 0.25f
-	//	GLfloat scale = (rand() % 20) / 100.f + .05f;
-	//	model = glm::scale(model, glm::vec3(scale));
-
-	//	// 3. Rotation: add random rotation around a (semi)randomly picked rotation axis vector
-	//	GLfloat rotAngle = (rand() % 360);
-	//	model = glm::rotate(model, rotAngle, glm::vec3(.4f, .6f, .8f));
-
-	//	modelMatrices[i] = model;
-	//}
-
-	//for (size_t i = 0; i < rock.meshes.size(); i++)
-	//{
-	//	GLuint VAO = rock.meshes[i].VAO;
-	//	GLuint buffer;
-	//	glBindVertexArray(VAO);
-	//	glGenBuffers(1, &buffer);
-	//	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	//	glBufferData(GL_ARRAY_BUFFER, amount * sizeof(glm::mat4), &modelMatrices[0], GL_STATIC_DRAW);
-
-	//	GLsizei vec4Size = sizeof(glm::vec4);
-	//	glEnableVertexAttribArray(3);
-	//	glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)0);
-	//	glEnableVertexAttribArray(4);
-	//	glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)(vec4Size));
-	//	glEnableVertexAttribArray(5);
-	//	glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)(2 * vec4Size));
-	//	glEnableVertexAttribArray(6);
-	//	glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (GLvoid*)(3 * vec4Size));
-
-	//	glVertexAttribDivisor(3, 1);
-	//	glVertexAttribDivisor(4, 1);
-	//	glVertexAttribDivisor(5, 1);
-	//	glVertexAttribDivisor(6, 1);
-
-	//	glBindVertexArray(0);
-	//}
-	//GLfloat quadVertices[] = {
-	//	// Positions   // Colors
-	//	-0.05f,  0.05f,  1.0f, 0.0f, 0.0f,
-	//	-0.05f, -0.05f,  0.0f, 0.0f, 1.0f,
-	//	 0.05f, -0.05f,  0.0f, 1.0f, 0.0f,
-
-	//	-0.05f,  0.05f,  1.0f, 0.0f, 0.0f,
-	//	 0.05f, -0.05f,  0.0f, 1.0f, 0.0f,
-	//	 0.05f,  0.05f,  0.0f, 1.0f, 1.0f
-	//};
-	//GLuint quadVAO, quadVBO;
-	//glGenVertexArrays(1, &quadVAO);
-	//glGenBuffers(1, &quadVBO);
-	//glBindVertexArray(quadVAO);
-	//glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
-	//glEnableVertexAttribArray(0);
-	//glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
-	//glEnableVertexAttribArray(1);
-	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat)));
-	// Also set instance data
-
-	//DirLight dirLight("dirLight");
-	//dirLight.setAsUniform(shader);
-	//PointLight pointLight("pointLight");
-	//pointLight.setAsUniform(shader);
-
-	//int modelLocation           = shader.getUniformLocation("model");
-
-	//int modelLocation_scs       = singleColorShader.getUniformLocation("model");
-
-	//int projectionLocation_skb  = skyboxShader.getUniformLocation("projection");
-	//int viewLocation_skb        = skyboxShader.getUniformLocation("view");
-
-	//int viewDirLocation         = shader.getUniformLocation("viewDir");
-	//int shininessLocation       = shader.getUniformLocation("shininess");
-	//int normalMatLocation       = shader.getUniformLocation("normalMat");
-
-	//int modelLocation_rflx      = reflexShader.getUniformLocation("model");
-	//int camPosLocation_rflx     = reflexShader.getUniformLocation("camPos");
-	//int normalMatLocation_rflx  = reflexShader.getUniformLocation("normalMat");
-
-	//int modelLocation_cube      = cubemapShader.getUniformLocation("model");
-	//int camPosLocation_cube     = cubemapShader.getUniformLocation("camPos");
-	//int normalMatLocation_cube  = cubemapShader.getUniformLocation("normalMat");
-	//
-
-	//int modelLocation_ffs       = frontFacingShader.getUniformLocation("model");
-
-	//int modelLocation_ps        = pointSizeShader.getUniformLocation("model");
-
-	//shader.setFloat(shininessLocation, 36.f);
-
-	// framebuffer
-	unsigned int fbo;
-	glGenFramebuffers(1, &fbo);
-	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-	// Create a multisampled color attachment texture
-	GLuint textureColorBufferMultiSampled = generateMultiSampleTexture(4);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, textureColorBufferMultiSampled, 0);
-	// Create a renderbuffer object for depth and stencil attachment (we won't be sampling these)
-	GLuint rbo;
-	glGenRenderbuffers(1, &rbo);
-	glBindRenderbuffer(GL_RENDERBUFFER, rbo);
-	glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, screen_width, screen_height);  // Use a single renderbuffer object for both a depth AND stencil buffer.
-	glBindRenderbuffer(GL_RENDERBUFFER, 0);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
-	// Now that we actually created the framebuffer and added all attachments we want to check if it is actually complete now
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << endl;
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-
-	// second buffer
-	GLuint intermediateFBO;
-	Texture screenTex;
-	screenTex.id = generateAttachmentTexture(false, false);
-	screenTex.type = "texture_diffuse";
-	screen.add_texture(screenTex);
-	glGenFramebuffers(1, &intermediateFBO);
-	glBindFramebuffer(GL_FRAMEBUFFER, intermediateFBO);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, screenTex.id, 0);	// We only need a color buffer
-
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		cout << "ERROR::FRAMEBUFFER:: Intermediate framebuffer is not complete!" << endl;
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
+	GLfloat aspect = (GLfloat)SHADOW_WIDTH / (GLfloat)SHADOW_HEIGHT;
+	GLfloat near_plane = 1.0f;
+	GLfloat far_plane = 25.0f;
 
 	while (!main_program.shouldClose())
 	{
 		main_program.begin_loop();
 		main_program.do_movement(camera);
 
-		// Set uniforms
-		/////////////////////////////////////////////////////
-        // First render pass: Mirror texture...
-        // Bind to framebuffer and draw to color texture as 
-        // we normally would, but with the view camera 
-        // reversed.
-        // //////////////////////////////////////////////////
-		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-		glClearColor(.1f, .08f, .07f, 1.f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-		glEnable(GL_DEPTH_TEST);
-		// cube
-		glm::mat4 view = camera.getView();
-		glm::mat4 projection = glm::perspective(camera.getFOV(), (float)screen_width / screen_height, .1f, 10000.f);
-		//model = glm::scale(model, glm::vec3(.3f));
-		//glm::mat3 normalMat = getNormalMat(model);
+        glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), aspect, near_plane, far_plane);
+        std::vector<glm::mat4> shadowTransforms;
+        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 1.0,  0.0,  0.0), glm::vec3(0.0, -1.0,  0.0)));
+        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3(-1.0,  0.0,  0.0), glm::vec3(0.0, -1.0,  0.0)));
+        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 0.0,  1.0,  0.0), glm::vec3(0.0,  0.0,  1.0)));
+        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 0.0, -1.0,  0.0), glm::vec3(0.0,  0.0, -1.0)));
+        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 0.0,  0.0,  1.0), glm::vec3(0.0, -1.0,  0.0)));
+        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 0.0,  0.0, -1.0), glm::vec3(0.0, -1.0,  0.0)));
+
+        // 1. Render scene to depth cubemap
+        glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+        glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+            glClear(GL_DEPTH_BUFFER_BIT);
+            simpleDepthShader.use();
+			simpleDepthShader.setMat4fv_vector("shadowMatrices", shadowTransforms);
+			simpleDepthShader.setFloat("far_plane", far_plane);
+			simpleDepthShader.set3fv("lightPos", lightPos);
+            drawScene(simpleDepthShader, cube);
+         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+        // 2. Render scene as normal 
+        glViewport(0, 0, screen_width, screen_height);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        shader.use();
+        glm::mat4 projection = glm::perspective(camera.getFOV(), (float)screen_width / (float)screen_height, 0.1f, 100.0f);
+        glm::mat4 view = camera.getView();
 
 		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(projection));
 		glBufferSubData(GL_UNIFORM_BUFFER, sizeof(glm::mat4), sizeof(glm::mat4), glm::value_ptr(view));
-		glm::mat4 model(1.f);
-		colorShader.setMat4fv("model", glm::value_ptr(model));
-		cube.draw(colorShader);
+        
+		// Set light uniforms
+		shader.set3fv("lightPos", lightPos);
+		shader.set3fv("viewPos", camera.Position);
 
-		// 2. Now blit multisampled buffer(s) to normal colorbuffer of intermediate FBO. Image is stored in screenTexture
-		glBindFramebuffer(GL_READ_FRAMEBUFFER, fbo);
-		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, intermediateFBO);
-		glBlitFramebuffer(0, 0, screen_width, screen_height, 0, 0, screen_width, screen_height, GL_COLOR_BUFFER_BIT, GL_NEAREST);
-
-		// 3. Now render quad with scene's visuals as its texture image
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-		glDisable(GL_DEPTH_TEST);
-
-		screen.draw(screenShader);
-		//model = glm::translate(model, glm::vec3(0.0f, -3.0f, 0.0f));
-		//model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
-		//diffuseShader.setMat4fv("model", glm::value_ptr(model));
-		//planet.draw(diffuseShader);
-		
-		// Draw meteorites
-		//instanceShader.use();
-		//glBindTexture(GL_TEXTURE_2D, rock.textures_loaded[0].id); // Note we also made the textures_loaded vector public (instead of private) from the model class.
-		//for (size_t i = 0; i < rock.meshes.size(); i++)
-		//{
-		//	glBindVertexArray(rock.meshes[i].VAO);
-		//	glDrawElementsInstanced(GL_TRIANGLES, rock.meshes[i].indices.size(), GL_UNSIGNED_INT, 0, amount);
-		//	glBindVertexArray(0);
-		//}
-		//for (size_t i = 0; i < amount; i++)
-		//{
-		//	diffuseShader.setMat4fv("model", glm::value_ptr(modelMatrices[i]));
-		//	rock.draw(diffuseShader);
-		//}
-		//instanceShader.use();
-		//instances.draw(instanceShader);
-
-
-		// skybox
-		view = glm::mat4(glm::mat3(camera.getView()));
-
-		//glDepthMask(GL_FALSE);
-
-		glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
-		//skyboxShader.setMat4fv(projectionLocation_skb, glm::value_ptr(projection), false);
-		//skyboxShader.setMat4fv(viewLocation_skb, glm::value_ptr(view), false);
-
-		//testGeoShader.use();
-		//testGeoMesh.draw(testGeoShader, GL_POINTS);
-
-		// skybox cube
-		//skyboxShader.use();
-		//skybox.draw(skyboxShader);
-
-		glDepthFunc(GL_LESS);
-
-
-		//glDepthMask(GL_TRUE);
-
-#pragma region code
-		//glm::mat4 model{ 1.f };
-		//glm::mat3 normalMat;
-		//glm::mat4 projection = glm::perspective(camera.getFOV(), (float)screen_width / screen_height, .1f, 100.f);
-		//camera.Yaw += 180.f;
-		//camera.Pitch += 180.f;
-		//camera.processCameraRotation(0, 0, false);
-		//glm::mat4 view = camera.getView();
-		//camera.Yaw -= 180.f;
-		//camera.Pitch -= 180.f;
-		//camera.processCameraRotation(0, 0, false);
-
-		//glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-		//glClearColor(.1f, .08f, .07f, 1.f);
-		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-		//glEnable(GL_CULL_FACE);
-
-		//singleColorShader.setMat4fv(projectionLocation_scs, glm::value_ptr(projection), false);
-		//singleColorShader.setMat4fv(viewLocation_scs, glm::value_ptr(view), false);
-		//
-		//shader.setMat4fv(projectionLocation, glm::value_ptr(projection), false);
-		//shader.setMat4fv(viewLocation, glm::value_ptr(view), false);
-		//shader.set3fv(viewDirLocation, glm::value_ptr(camera.Position));
-
-		//skyboxShader.setMat4fv(projectionLocation_skb, glm::value_ptr(projection), false);
-		//skyboxShader.setMat4fv(viewLocation_skb, glm::value_ptr(view), false);
-
-		//// skybox
-		//glDisable(GL_DEPTH_TEST);
-		//glDisable(GL_CULL_FACE);
-
-		//skyboxShader.use();
-		//skybox.draw(skyboxShader);
-
-		//glEnable(GL_DEPTH_TEST);
-		//glEnable(GL_CULL_FACE);
-
-		//// Draw floor as normal, we only care about the containers. The floor should NOT fill the stencil buffer so we set its mask to 0x00
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//shader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-		//glStencilMask(0x00);
-		//floor.draw(shader);
-
-		//// Render pass, draw objects as normal, filling the stencil buffer
-		//glEnable(GL_STENCIL_TEST);
-		//glStencilFunc(GL_ALWAYS, 1, 0xFF);
-		//glStencilMask(0xFF);
-		//// Draw cubes
-		//model = glm::mat4{1.f};
-		//model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//shader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-		////ourModel.draw(shader);
-
-		//shader.use();
-		//cube.draw(shader);
-
-		//model = glm::mat4(1.f);
-		//model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//shader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-
-		//cube.draw(shader);
-
-		//// Render pass, now draw slightly scaled versions of the objects, this time disabling stencil writing.
-		//// Because stencil buffer is now filled with several 1s. The parts of the buffer that are 1 are now not drawn, thus only drawing
-		//// the objects' size differences, making it look like borders.
-		//glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-		//glStencilMask(0x00);
-		//glDisable(GL_DEPTH_TEST);
-		//GLfloat scale = 1.05f;
-
-		//// cubes
-		//model = glm::mat4(1.f);
-		//model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-		//model = glm::scale(model, glm::vec3(scale, scale, scale));
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//singleColorShader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-		////ourModel.draw(shader);
-
-		//singleColorShader.use();
-		//cube.draw(singleColorShader);
-
-		//model = glm::mat4(1.f);
-		//model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-		//model = glm::scale(model, glm::vec3(scale, scale, scale));
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//singleColorShader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-
-		//cube.draw(singleColorShader);
-
-		//glStencilMask(0xFF);
-		//glDisable(GL_STENCIL_TEST);
-		//glEnable(GL_DEPTH_TEST);
-
-		//// grass
-		//glDisable(GL_CULL_FACE);
-		//map<float, glm::vec3> sorted{};
-		//for (size_t i = 0; i < grassPos.size(); i++)
-		//{
-		//	GLfloat distance = glm::length(camera.Position - grassPos[i]);
-		//	sorted[distance] = grassPos[i];
-		//}
-		////glStencilFunc(GL_GREATER, 1, 0xFF);
-
-		//for (map<float, glm::vec3>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)
-		//{
-		//	model = glm::mat4(1.f);
-		//	model = glm::translate(model, it->second);
-		//	glm::mat4 normalMat4 = glm::inverse(model);
-		//	glm::mat3 normalMat = getNormalMat(model);
-		//	shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//	shader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-		//	grass.draw(shader);
-		//}
-		///////////////////////////////////////////////////////
-  //      // Second render pass: Draw as normal
-  //      // //////////////////////////////////////////////////
-
-		//glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		//glClearColor(.1f, .08f, .07f, 1.f);
-		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
-		//glEnable(GL_CULL_FACE);
-
-		//view = camera.getView();
-
-		//singleColorShader.setMat4fv(projectionLocation, glm::value_ptr(projection), false);
-		//singleColorShader.setMat4fv(viewLocation, glm::value_ptr(view), false);
-		//singleColorShader.set3fv(viewDirLocation, glm::value_ptr(camera.Position));
-
-		//shader.setMat4fv(projectionLocation, glm::value_ptr(projection), false);
-		//shader.setMat4fv(viewLocation, glm::value_ptr(view), false);
-		//shader.set3fv(viewDirLocation, glm::value_ptr(camera.Position));
-
-		//skyboxShader.setMat4fv(projectionLocation_skb, glm::value_ptr(projection), false);
-		//skyboxShader.setMat4fv(viewLocation_skb, glm::value_ptr(view), false);
-
-		//// skybox
-		//glDisable(GL_DEPTH_TEST);
-		//glDisable(GL_CULL_FACE);
-
-		//skyboxShader.use();
-		//skybox.draw(skyboxShader);
-
-		//glEnable(GL_DEPTH_TEST);
-		//glEnable(GL_CULL_FACE);
-		//// Draw floor as normal, we only care about the containers. The floor should NOT fill the stencil buffer so we set its mask to 0x00
-		//model = glm::mat4(1.f);
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//shader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-		//glStencilMask(0x00);
-		//floor.draw(shader);
-
-		//// Render pass, draw objects as normal, filling the stencil buffer
-		//glEnable(GL_STENCIL_TEST);
-		//glStencilFunc(GL_ALWAYS, 1, 0xFF);
-		//glStencilMask(0xFF);
-		//// Draw cubes
-		//model = glm::mat4{ 1.f };
-		//model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//shader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-		////ourModel.draw(shader);
-
-		//shader.use();
-		//cube.draw(shader);
-
-		//model = glm::mat4(1.f);
-		//model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//shader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-
-		//cube.draw(shader);
-
-		//// Render pass, now draw slightly scaled versions of the objects, this time disabling stencil writing.
-		//// Because stencil buffer is now filled with several 1s. The parts of the buffer that are 1 are now not drawn, thus only drawing
-		//// the objects' size differences, making it look like borders.
-		//glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-		//glStencilMask(0x00);
-		//glDisable(GL_DEPTH_TEST);
-		//scale = 1.05f;
-
-		//// cubes
-		//model = glm::mat4(1.f);
-		//model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-		//model = glm::scale(model, glm::vec3(scale, scale, scale));
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//singleColorShader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-		////ourModel.draw(shader);
-
-		//singleColorShader.use();
-		//cube.draw(singleColorShader);
-
-		//model = glm::mat4(1.f);
-		//model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-		//model = glm::scale(model, glm::vec3(scale, scale, scale));
-		//normalMat = getNormalMat(model);
-		//shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//singleColorShader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-
-		//cube.draw(singleColorShader);
-
-		//glStencilMask(0xFF);
-		//glDisable(GL_STENCIL_TEST);
-		//glEnable(GL_DEPTH_TEST);
-
-		//// grass
-		//glDisable(GL_CULL_FACE);
-		//sorted = map<float, glm::vec3>{};
-		//for (size_t i = 0; i < grassPos.size(); i++)
-		//{
-		//	GLfloat distance = glm::length(camera.Position - grassPos[i]);
-		//	sorted[distance] = grassPos[i];
-		//}
-		////glStencilFunc(GL_GREATER, 1, 0xFF);
-
-		//for (map<float, glm::vec3>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)
-		//{
-		//	model = glm::mat4(1.f);
-		//	model = glm::translate(model, it->second);
-		//	glm::mat4 normalMat4 = glm::inverse(model);
-		//	glm::mat3 normalMat = getNormalMat(model);
-		//	shader.setMat3fv(normalMatLocation, glm::value_ptr(normalMat));
-		//	shader.setMat4fv(modelLocation, glm::value_ptr(model), false);
-		//	grass.draw(shader);
-		//}
-
-		///////////////////////////////////////////////////////
-  //      // Bind to default framebuffer again and draw the 
-  //      // quad plane with attched screen texture.
-  //      // //////////////////////////////////////////////////
-		////glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		//// Clear all relevant buffers
-		//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER | GL_STENCIL_BUFFER);
-		//glDisable(GL_DEPTH_TEST);
-
-		//screenShader.use();
-		//quad.draw(screenShader);
-#pragma endregion
+		shader.setBool("shadows", shadows);
+		shader.setFloat("far_plane", far_plane);
+        drawScene(shader, cube);
 
 		main_program.end_loop();
+	}
+}
+
+void drawScene(Shader& shader, Mesh& mesh)
+{
+	glm::mat4 model = glm::mat4(1.0f);
+	model = glm::scale(model, glm::vec3(10.f));
+	shader.setMat4fv("model", model);
+	shader.setMat3fv("normalMat", getNormalMat(model));
+	glCullFace(GL_FRONT);
+	shader.setBool("reverse_normals", true);
+	mesh.draw(shader);
+	shader.setBool("reverse_normals", false);
+	glCullFace(GL_BACK);
+
+	for (size_t i = 0; i < cubePositions.size(); i++)
+	{
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, cubePositions[i]);
+		if (i == 1)
+			model = glm::scale(model, glm::vec3(1.5));
+		if (i == cubePositions.size() - 1)
+			model = glm::rotate(model, 60.f, glm::vec3(1.f, 0.f, 1.f));
+		shader.setMat4fv("model", model);
+		shader.setMat3fv("normalMat", getNormalMat(model));
+		mesh.draw(shader);
 	}
 }
 
@@ -671,7 +241,7 @@ static void scrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 	camera.processCameraZoom((float)yOffset);
 }
 
-GLuint loadTexture(const GLchar* path)
+GLuint loadTexture(const GLchar* path, bool gamma)
 {
 	unsigned int texID;
 	glGenTextures(1, &texID);
@@ -682,6 +252,7 @@ GLuint loadTexture(const GLchar* path)
 	if (data)
 	{
 		GLenum colorChannelArray[]{ GL_FALSE, GL_R, GL_RG, GL_RGB, GL_RGBA };
+		GLenum colorChannelArrayGamma[]{ GL_FALSE, GL_FALSE, GL_FALSE, GL_SRGB, GL_SRGB_ALPHA };
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -690,8 +261,12 @@ GLuint loadTexture(const GLchar* path)
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 
 		glBindTexture(GL_TEXTURE_2D, texID);
-		glTexImage2D(GL_TEXTURE_2D, 0, colorChannelArray[t_nrChannels], t_width, t_height, 0,
-			colorChannelArray[t_nrChannels], GL_UNSIGNED_BYTE, data);
+		if (!gamma)
+			glTexImage2D(GL_TEXTURE_2D, 0, colorChannelArray[t_nrChannels], t_width, t_height, 0, 
+				colorChannelArray[t_nrChannels], GL_UNSIGNED_BYTE, data);
+		else
+			glTexImage2D(GL_TEXTURE_2D, 0, colorChannelArrayGamma[t_nrChannels], t_width, t_height, 0,
+				colorChannelArray[t_nrChannels], GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else
@@ -703,14 +278,15 @@ GLuint loadTexture(const GLchar* path)
 	return texID;
 }
 
-GLuint loadCubeMap(const vector<const GLchar*>& texture_faces)
+GLuint loadCubeMap(const vector<const GLchar*>& texture_faces, bool gamma)
 {
 	unsigned int texID;
 	glGenTextures(1, &texID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, texID);
 
 	GLenum colorChannelArray[]{ GL_FALSE, GL_R, GL_RG, GL_RGB, GL_RGBA };
-	
+	GLenum colorChannelArrayGamma[]{ GL_FALSE, GL_FALSE, GL_FALSE, GL_SRGB, GL_SRGB_ALPHA };
+
 	int t_width, t_height, t_nrChannels;
 	unsigned char* data;
 	stbi_set_flip_vertically_on_load(0);
@@ -719,9 +295,14 @@ GLuint loadCubeMap(const vector<const GLchar*>& texture_faces)
 		data = stbi_load(texture_faces[i], &t_width, &t_height, &t_nrChannels, 0);
 		if (data)
 		{
-			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-				0, colorChannelArray[t_nrChannels], t_width, t_height, 0,
-				colorChannelArray[t_nrChannels], GL_UNSIGNED_BYTE, data);
+			if (!gamma)
+				glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, 
+					colorChannelArray[t_nrChannels], t_width, t_height,
+					0, colorChannelArray[t_nrChannels], GL_UNSIGNED_BYTE, data);
+			else
+				glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0,
+					colorChannelArrayGamma[t_nrChannels], t_width, t_height,
+					0, colorChannelArray[t_nrChannels], GL_UNSIGNED_BYTE, data);
 		}
 		else
 		{

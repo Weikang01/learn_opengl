@@ -50,13 +50,13 @@ namespace Prim
 
     vector<Vertex> planeVertices = {
         // Positions            // Texture Coords (note we set these higher than 1 that together with GL_REPEAT (as texture wrapping mode) will cause the floor texture to repeat)
-        Vertex(glm::vec3( 5.0f, -0.5f,  5.0f),  glm::vec2(2.0f, 0.0f)),
-        Vertex(glm::vec3(-5.0f, -0.5f, -5.0f),  glm::vec2(0.0f, 2.0f)),
+        Vertex(glm::vec3( 5.0f, -0.5f,  5.0f),  glm::vec2(6.0f, 0.0f)),
+        Vertex(glm::vec3(-5.0f, -0.5f, -5.0f),  glm::vec2(0.0f, 6.0f)),
         Vertex(glm::vec3(-5.0f, -0.5f,  5.0f),  glm::vec2(0.0f, 0.0f)),
 
-        Vertex(glm::vec3( 5.0f, -0.5f,  5.0f),  glm::vec2(2.0f, 0.0f)),
-        Vertex(glm::vec3( 5.0f, -0.5f, -5.0f),  glm::vec2(2.0f, 2.0f)),
-        Vertex(glm::vec3(-5.0f, -0.5f, -5.0f),  glm::vec2(0.0f, 2.0f))
+        Vertex(glm::vec3( 5.0f, -0.5f,  5.0f),  glm::vec2(6.0f, 0.0f)),
+        Vertex(glm::vec3( 5.0f, -0.5f, -5.0f),  glm::vec2(6.0f, 6.0f)),
+        Vertex(glm::vec3(-5.0f, -0.5f, -5.0f),  glm::vec2(0.0f, 6.0f))
     };
 
     vector<Vertex> transparentVertices = {
@@ -154,4 +154,27 @@ namespace Prim
         Vertex(glm::vec3( 0.05f,  0.05f, 0.0f), glm::vec3(0.0f, 1.0f, 1.0f), glm::vec2(0.0f, 0.0f))
     };
 
+    vector<Vertex> floorVertices =
+    {
+        // Positions                           // Normals                   // Texture Coords
+        Vertex(glm::vec3( 8.0f, -0.5f,  8.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(5.0f, 0.0f)),
+        Vertex(glm::vec3(-8.0f, -0.5f,  8.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0.0f, 0.0f)),
+        Vertex(glm::vec3(-8.0f, -0.5f, -8.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0.0f, 5.0f)),
+
+        Vertex(glm::vec3( 8.0f, -0.5f,  8.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(5.0f, 0.0f)),
+        Vertex(glm::vec3(-8.0f, -0.5f, -8.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0.0f, 5.0f)),
+        Vertex(glm::vec3( 8.0f, -0.5f, -8.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(5.0f, 5.0f))
+    };
+
+    vector<Vertex> hugePlaneVertices =
+    {
+         // Positions                             // Normals                   // Texture Coords
+         Vertex(glm::vec3( 25.0f, -0.5f,  25.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(25.0f,  0.0f)),
+         Vertex(glm::vec3(-25.0f, -0.5f, -25.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2( 0.0f, 25.0f)),
+         Vertex(glm::vec3(-25.0f, -0.5f,  25.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2( 0.0f,  0.0f)),
+
+         Vertex(glm::vec3( 25.0f, -0.5f,  25.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(25.0f,  0.0f)),
+         Vertex(glm::vec3( 25.0f, -0.5f, -25.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(25.0f, 25.0f)),
+         Vertex(glm::vec3(-25.0f, -0.5f, -25.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2( 0.0f, 25.0f))
+    };
 }

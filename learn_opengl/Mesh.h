@@ -8,6 +8,7 @@ public:
 	vector<Vertex> vertices;
 	vector<unsigned int> indices;
 	vector<Texture> textures;
+
 	unsigned int VAO;
 	unsigned int instanceVBO;
 	Mesh(vector<Vertex> vertices, 

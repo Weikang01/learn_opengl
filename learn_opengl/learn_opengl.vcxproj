@@ -152,6 +152,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Structures.cpp" />
   </ItemGroup>
@@ -167,8 +168,15 @@
     <ClInclude Include="Structures.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="blinn_fragment.glsl" />
+    <None Include="blinn_vertex.glsl" />
+    <None Include="cubeDepth_fragment.glsl" />
+    <None Include="cubeDepth_geometry.glsl" />
+    <None Include="cubeDepth_vertices.glsl" />
     <None Include="cubemap_fragment.glsl" />
     <None Include="cubemap_vertex.glsl" />
+    <None Include="debug_quad_fragment.glsl" />
+    <None Include="debug_quad_vertex.glsl" />
     <None Include="explode_fragment.glsl" />
     <None Include="explode_geometry.glsl" />
     <None Include="explode_vertex.glsl" />
@@ -193,10 +201,16 @@
     <None Include="pass_through_vertex.glsl" />
     <None Include="pointSize_fragment.glsl" />
     <None Include="pointSize_vertex.glsl" />
+    <None Include="point_shadows_fragment.glsl" />
+    <None Include="point_shadows_vertex.glsl" />
     <None Include="reflex_fragment.glsl" />
     <None Include="reflex_vertex.glsl" />
     <None Include="rock_fragment.glsl" />
     <None Include="rock_vertex.glsl" />
+    <None Include="shadow_mapping_fragment.glsl" />
+    <None Include="shadow_mapping_vertex.glsl" />
+    <None Include="simpleDepth_fragment.glsl" />
+    <None Include="simpleDepth_vertex.glsl" />
     <None Include="test_geometry.glsl" />
     <None Include="vertex_core.glsl" />
     <None Include="vertex_modelLoading.glsl" />

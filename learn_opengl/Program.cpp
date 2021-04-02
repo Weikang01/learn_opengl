@@ -24,8 +24,8 @@ void readFile(const char* fileName, string& target)
 Program::Program(const int screen_width, const int screen_height)
 {
 	glfwInit();
-	constexpr int WINDOW_VERSION_MAJOR = 4;
-	constexpr int WINDOW_VERSION_MINOR = 4;
+	constexpr int WINDOW_VERSION_MAJOR = 3;
+	constexpr int WINDOW_VERSION_MINOR = 3;
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, WINDOW_VERSION_MAJOR);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, WINDOW_VERSION_MINOR);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);

@@ -41,10 +41,10 @@ struct DirLight
 	{}
 	void setAsUniform         (Shader& shader);
 
-	void setDirectionAsUniform(Shader& shader, const GLfloat* value);
-	void setAmbientAsUniform  (Shader& shader, const GLfloat* value);
-	void setDiffuseAsUniform  (Shader& shader, const GLfloat* value);
-	void setSpecularAsUniform (Shader& shader, const GLfloat* value);
+	void setDirectionAsUniform(Shader& shader, const glm::vec3& value);
+	void setAmbientAsUniform  (Shader& shader, const glm::vec3& value);
+	void setDiffuseAsUniform  (Shader& shader, const glm::vec3& value);
+	void setSpecularAsUniform (Shader& shader, const glm::vec3& value);
 };
 
 struct PointLight
@@ -81,10 +81,10 @@ struct PointLight
 	{}
 	void setAsUniform(Shader& shader);
 
-	void setPositionAsUniform(Shader& shader, const GLfloat* value);
-	void setAmbientAsUniform(Shader& shader, const GLfloat* value);
-	void setDiffuseAsUniform(Shader& shader, const GLfloat* value);
-	void setSpecularAsUniform(Shader& shader, const GLfloat* value);
+	void setPositionAsUniform(Shader& shader, const glm::vec3& value);
+	void setAmbientAsUniform(Shader& shader,  const glm::vec3& value);
+	void setDiffuseAsUniform(Shader& shader,  const glm::vec3& value);
+	void setSpecularAsUniform(Shader& shader, const glm::vec3& value);
 	void setAttenuationCoefficients(Shader& shader, float constant, float linear, float quadratic);
 };
 
@@ -131,18 +131,18 @@ struct SpotLight
 
 	void setAsUniform(Shader& shader);
 
-	void setPositionAsUniform(Shader& shader, const GLfloat* value);
-	void setAmbientAsUniform(Shader& shader, const GLfloat* value);
-	void setDiffuseAsUniform(Shader& shader, const GLfloat* value);
-	void setSpecularAsUniform(Shader& shader, const GLfloat* value);
-	void setFrontAsUniform(Shader& shader, const GLfloat* value);
+	void setPositionAsUniform(Shader& shader, const glm::vec3& value);
+	void setAmbientAsUniform(Shader& shader,  const glm::vec3& value);
+	void setDiffuseAsUniform(Shader& shader,  const glm::vec3& value);
+	void setSpecularAsUniform(Shader& shader, const glm::vec3& value);
+	void setFrontAsUniform(Shader& shader,    const glm::vec3& value);
 	void setAttenuationCoefficients(Shader& shader, float constant, float linear, float quadratic);
 };
 
 struct Light
 {
 	//glm::vec3 direction;
-	glm::vec4 position   ;
+	glm::vec3 position   ;
 	glm::vec3 ambient    ;
 	glm::vec3 diffuse    ;
 	glm::vec3 specular   ;
@@ -154,7 +154,7 @@ struct Light
 	float     quadratic  ;
 	Light(
 		//glm::vec3 direction = glm::vec3(),
-		glm::vec4 position = glm::vec4(),
+		glm::vec3 position = glm::vec3(),
 		glm::vec3 ambient = glm::vec3(),
 		glm::vec3 diffuse = glm::vec3(),
 		glm::vec3 specular = glm::vec3(),
@@ -180,10 +180,10 @@ struct Light
 	{}
 	void setAsUniform(Shader& shader);
 
-	void setPositionAsUniform(Shader& shader, const GLfloat* value);
-	void setAmbientAsUniform(Shader& shader, const GLfloat* value);
-	void setDiffuseAsUniform(Shader& shader, const GLfloat* value);
-	void setSpecularAsUniform(Shader& shader, const GLfloat* value);
-	void setFrontAsUniform(Shader& shader, const GLfloat* value);
+	void setPositionAsUniform(Shader& shader, const glm::vec3& value);
+	void setAmbientAsUniform(Shader& shader,  const glm::vec3& value);
+	void setDiffuseAsUniform(Shader& shader,  const glm::vec3& value);
+	void setSpecularAsUniform(Shader& shader, const glm::vec3& value);
+	void setFrontAsUniform(Shader& shader,    const glm::vec3& value);
 	void setAttenuationCoefficients(Shader& shader, float constant, float linear, float quadratic);
 };

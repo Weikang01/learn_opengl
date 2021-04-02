@@ -35,11 +35,18 @@ void Mesh::bindTextures(Shader& shader)
 		{
 			number = to_string(heightNr++);
 		}
-		else if (textures[i].type == "skybox")
+		else if (textures[i].type == "skybox" || textures[i].type == "cubemap" || textures[i].type == "depthCubeMap")
 		{
 			glActiveTexture(GL_TEXTURE0 + i);
 			shader.setInt(textures[i].type.c_str(), i);
 			glBindTexture(GL_TEXTURE_CUBE_MAP, this->textures[i].id);
+			continue;
+		}
+		else
+		{
+			glActiveTexture(GL_TEXTURE0 + i);
+			shader.setInt(textures[i].type.c_str(), i);
+			glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
 			continue;
 		}
 		string name = textures[i].type;
@@ -105,7 +112,7 @@ void Mesh::instantiate(unsigned int count)
 
 void Mesh::setInstanceUniform(Shader& shader, vector<glm::vec2> uniform, const string& name)
 {
-	shader.set2fv_vector(name, uniform, instanceCount);
+	shader.set2fv_vector(name, uniform);
 	glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * instanceCount, &uniform[0], GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

@@ -48,6 +48,9 @@
     <ClCompile Include="Model.cpp">
       <Filter>cpps</Filter>
     </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h">
@@ -182,6 +185,45 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="rock_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="blinn_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="blinn_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="simpleDepth_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="simpleDepth_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="debug_quad_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="debug_quad_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shadow_mapping_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shadow_mapping_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="point_shadows_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="point_shadows_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="cubeDepth_vertices.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="cubeDepth_geometry.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="cubeDepth_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>
