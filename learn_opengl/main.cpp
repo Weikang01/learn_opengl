@@ -24,16 +24,6 @@ bool GLLogCall(const char* function, const char* file, int line)
 	return true;
 }
 
-
-vector<glm::vec3> cubePositions
-{
-	glm::vec3( 4.0f, -3.5f,  0.0f),
-	glm::vec3( 2.0f,  3.0f,  1.0f),
-	glm::vec3(-3.0f, -1.0f,  0.0f),
-	glm::vec3(-1.5f,  1.0f,  1.5f),
-	glm::vec3(-1.5f,  2.0f, -3.0f)
-};
-
 GLuint loadTexture(const GLchar* path, bool gamma = false);
 GLuint loadCubeMap(const vector<const GLchar*>& texture_faces, bool gamma = false);
 GLuint generateMultiSampleTexture(GLuint samples);
@@ -48,17 +38,7 @@ Camera camera((float)screen_width / screen_height, glm::vec3(0.0f, 0.0f, 3.0f));
 bool keys[1024]{ false };
 float lastX, lastY;
 
-// Options
-GLboolean shadows = true;
-
 void drawScene(Shader& shader, Mesh& mesh);
-vector<glm::vec3> grassPos{
-	glm::vec3(-1.5f, 0.0f, -0.48f),
-	glm::vec3(1.5f, 0.0f, 0.51f)  ,
-	glm::vec3(0.0f, 0.0f, 0.7f)	  ,
-	glm::vec3(-0.3f, 0.0f, -2.3f) ,
-	glm::vec3(0.5f, 0.0f, -0.6f)
-};
 
 int main()
 {
@@ -72,15 +52,11 @@ int main()
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glCullFace(GL_BACK);
-	//glEnable(GL_PROGRAM_POINT_SIZE);
-	//glEnable(GL_MULTISAMPLE);
-	//glDepthFunc(GL_LEQUAL);
 
 	glViewport(0, 0, screen_width, screen_height);
 
 	// Setup and compile our shaders
-	Shader shader("point_shadows_vertex.glsl", "point_shadows_fragment.glsl");
-	Shader simpleDepthShader("cubeDepth_vertices.glsl", "cubeDepth_fragment.glsl", "cubeDepth_geometry.glsl");
+	Shader shader("normal_tex_vertex.glsl", "normal_tex_fragment.glsl");
 
 	// First. We get the relevant block indices
 	GLuint uniformBlockIndexShader = shader.getUniformBlockIndex("Matrices");
@@ -97,85 +73,68 @@ int main()
 	glBindBufferRange(GL_UNIFORM_BUFFER, 0, uboMatrices, 0, 2 * sizeof(glm::mat4));
 
 	// texture
-	Texture texWood;
-	texWood.id = loadTexture("Images/wood.png", true);
-	texWood.type = "texture_diffuse";
-
-
-	// generate a frame buffer object for depth map
-	const GLuint SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
-	GLuint depthMapFBO;
-	glGenFramebuffers(1, &depthMapFBO);
-	// Create depth cubemap texture
-	Texture depthCubemap;
-	depthCubemap.type = "depthCubeMap";
-	glGenTextures(1, &depthCubemap.id);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap.id);
-	for (GLuint i = 0; i < 6; ++i)
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-	// Attach cubemap as depth map FBO's color buffer
-	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthCubemap.id, 0);
-	glDrawBuffer(GL_NONE);
-	glReadBuffer(GL_NONE);
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		std::cout << "Framebuffer not complete!" << std::endl;
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	Texture texWall;
+	stbi_set_flip_vertically_on_load(0);
+	texWall.id = loadTexture("Images/brickwall.jpg");
+	texWall.type = "texture_diffuse";
+	Texture texWall_norm;
+	texWall_norm.id = loadTexture("Images/brickwall_normal.jpg");
+	texWall_norm.type = "texture_normal";
 
 	// mesh
-	Mesh cube(Prim::cubeVertices);
-	cube.add_texture(texWood);
-	cube.add_texture(depthCubemap);
+	vector<Vertex> vertices = Prim::cubeVertices;
 
-	// Set texture samples
-	//shader.use();
-	//shader.setInt("diffuseTexture", 0);
-	//shader.setInt("depthMap", 1);
+	for (size_t i = 0; i < vertices.size(); i += 3)
+	{
+		glm::vec3 edge1 = vertices[i + 1].position - vertices[i].position;
+		glm::vec3 edge2 = vertices[i + 2].position - vertices[i].position;
+		glm::vec2 deltaUV1 = vertices[i + 1].texCoord - vertices[i].texCoord;
+		glm::vec2 deltaUV2 = vertices[i + 2].texCoord - vertices[i].texCoord;
+
+		GLfloat f = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y);
+
+		glm::vec3 tangent(0.f);
+		tangent.x = f * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x);
+		tangent.y = f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y);
+		tangent.z = f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z);
+		vertices[i].tangent = glm::normalize(tangent);
+		vertices[i + 1].tangent = glm::normalize(tangent);
+		vertices[i + 2].tangent = glm::normalize(tangent);
+
+
+		glm::vec3 bitangent(0.f);
+		bitangent.x = f * (-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x);
+		bitangent.y = f * (-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y);
+		bitangent.z = f * (-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z);
+		vertices[i].bitangent = glm::normalize(bitangent);
+		vertices[i + 1].bitangent = glm::normalize(bitangent);
+		vertices[i + 2].bitangent = glm::normalize(bitangent);
+	}
+
+	Mesh cube(vertices);
+	cube.add_texture(texWall);
+	cube.add_texture(texWall_norm);
 
 	// Light source
-	glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
+	glm::vec3 lightPos(0.0f, 1.0f, 1.0f);
 
-	GLfloat aspect = (GLfloat)SHADOW_WIDTH / (GLfloat)SHADOW_HEIGHT;
-	GLfloat near_plane = 1.0f;
-	GLfloat far_plane = 25.0f;
+	double delta = glfwGetTime();
+	bool normalMap = true;
 
 	while (!main_program.shouldClose())
 	{
 		main_program.begin_loop();
 		main_program.do_movement(camera);
 
-        glm::mat4 shadowProj = glm::perspective(glm::radians(90.0f), aspect, near_plane, far_plane);
-        std::vector<glm::mat4> shadowTransforms;
-        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 1.0,  0.0,  0.0), glm::vec3(0.0, -1.0,  0.0)));
-        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3(-1.0,  0.0,  0.0), glm::vec3(0.0, -1.0,  0.0)));
-        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 0.0,  1.0,  0.0), glm::vec3(0.0,  0.0,  1.0)));
-        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 0.0, -1.0,  0.0), glm::vec3(0.0,  0.0, -1.0)));
-        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 0.0,  0.0,  1.0), glm::vec3(0.0, -1.0,  0.0)));
-        shadowTransforms.push_back(shadowProj * glm::lookAt(lightPos, lightPos + glm::vec3( 0.0,  0.0, -1.0), glm::vec3(0.0, -1.0,  0.0)));
+		lightPos = glm::vec3(0.f, sin(glm::radians(glfwGetTime())), cos(glm::radians(glfwGetTime())));
 
-        // 1. Render scene to depth cubemap
-        glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
-        glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-            glClear(GL_DEPTH_BUFFER_BIT);
-            simpleDepthShader.use();
-			simpleDepthShader.setMat4fv_vector("shadowMatrices", shadowTransforms);
-			simpleDepthShader.setFloat("far_plane", far_plane);
-			simpleDepthShader.set3fv("lightPos", lightPos);
-            drawScene(simpleDepthShader, cube);
-         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.1f, 0.1f, 0.1f, 1.f);
 
-        // 2. Render scene as normal 
-        glViewport(0, 0, screen_width, screen_height);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        shader.use();
         glm::mat4 projection = glm::perspective(camera.getFOV(), (float)screen_width / (float)screen_height, 0.1f, 100.0f);
         glm::mat4 view = camera.getView();
 
+		glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
 		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(projection));
 		glBufferSubData(GL_UNIFORM_BUFFER, sizeof(glm::mat4), sizeof(glm::mat4), glm::value_ptr(view));
         
@@ -183,9 +142,10 @@ int main()
 		shader.set3fv("lightPos", lightPos);
 		shader.set3fv("viewPos", camera.Position);
 
-		shader.setBool("shadows", shadows);
-		shader.setFloat("far_plane", far_plane);
-        drawScene(shader, cube);
+		glm::mat4 model = glm::mat4(1.0f);
+		shader.setMat4fv("model", model);
+		shader.setMat3fv("normalMat", getNormalMat(model));
+		cube.draw(shader);
 
 		main_program.end_loop();
 	}
@@ -194,27 +154,9 @@ int main()
 void drawScene(Shader& shader, Mesh& mesh)
 {
 	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::scale(model, glm::vec3(10.f));
 	shader.setMat4fv("model", model);
 	shader.setMat3fv("normalMat", getNormalMat(model));
-	glCullFace(GL_FRONT);
-	shader.setBool("reverse_normals", true);
 	mesh.draw(shader);
-	shader.setBool("reverse_normals", false);
-	glCullFace(GL_BACK);
-
-	for (size_t i = 0; i < cubePositions.size(); i++)
-	{
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, cubePositions[i]);
-		if (i == 1)
-			model = glm::scale(model, glm::vec3(1.5));
-		if (i == cubePositions.size() - 1)
-			model = glm::rotate(model, 60.f, glm::vec3(1.f, 0.f, 1.f));
-		shader.setMat4fv("model", model);
-		shader.setMat3fv("normalMat", getNormalMat(model));
-		mesh.draw(shader);
-	}
 }
 
 

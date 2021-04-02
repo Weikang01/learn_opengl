@@ -195,6 +195,8 @@
     <None Include="lighting_vertex.glsl" />
     <None Include="normal_fragment.glsl" />
     <None Include="normal_geometry.glsl" />
+    <None Include="normal_tex_fragment.glsl" />
+    <None Include="normal_tex_vertex.glsl" />
     <None Include="normal_vertex.glsl" />
     <None Include="pass_through_fragment.glsl" />
     <None Include="pass_through_geometry.glsl" />

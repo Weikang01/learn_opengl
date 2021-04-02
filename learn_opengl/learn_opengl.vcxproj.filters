@@ -226,5 +226,11 @@
     <None Include="cubeDepth_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
+    <None Include="normal_tex_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="normal_tex_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

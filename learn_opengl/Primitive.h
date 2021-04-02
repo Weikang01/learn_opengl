@@ -72,22 +72,24 @@ namespace Prim
 
     vector<Vertex> quadVertices =
     {
-        Vertex(glm::vec3(-1.0f,  1.0f, 0.0f),  glm::vec2(0.0f, 1.0f)),
-        Vertex(glm::vec3(-1.0f, -1.0f, 0.0f),  glm::vec2(0.0f, 0.0f)),
-        Vertex(glm::vec3( 1.0f, -1.0f, 0.0f),  glm::vec2(1.0f, 0.0f)),
-        Vertex(glm::vec3(-1.0f,  1.0f, 0.0f),  glm::vec2(0.0f, 1.0f)),
-        Vertex(glm::vec3( 1.0f, -1.0f, 0.0f),  glm::vec2(1.0f, 0.0f)),
-        Vertex(glm::vec3( 1.0f,  1.0f, 0.0f),  glm::vec2(1.0f, 1.0f))
+        Vertex(glm::vec3(-1.0f,  1.0f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(0.0f, 1.0f)),
+        Vertex(glm::vec3(-1.0f, -1.0f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(0.0f, 0.0f)),
+        Vertex(glm::vec3( 1.0f, -1.0f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(1.0f, 0.0f)),
+
+        Vertex(glm::vec3(-1.0f,  1.0f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(0.0f, 1.0f)),
+        Vertex(glm::vec3( 1.0f, -1.0f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(1.0f, 0.0f)),
+        Vertex(glm::vec3( 1.0f,  1.0f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(1.0f, 1.0f))
     };
 
     vector<Vertex> smallQuadVertices =
     {
-        Vertex(glm::vec3(-0.3f,  1.0f, 0.0f),  glm::vec2(0.0f, 1.0f)),
-        Vertex(glm::vec3(-0.3f,  0.7f, 0.0f),  glm::vec2(0.0f, 0.0f)),
-        Vertex(glm::vec3( 0.3f,  0.7f, 0.0f),  glm::vec2(1.0f, 0.0f)),
-        Vertex(glm::vec3(-0.3f,  1.0f, 0.0f),  glm::vec2(0.0f, 1.0f)),
-        Vertex(glm::vec3( 0.3f,  0.7f, 0.0f),  glm::vec2(1.0f, 0.0f)),
-        Vertex(glm::vec3( 0.3f,  1.0f, 0.0f),  glm::vec2(1.0f, 1.0f))
+        Vertex(glm::vec3(-0.3f,  1.0f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(0.0f, 1.0f)),
+        Vertex(glm::vec3(-0.3f,  0.7f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(0.0f, 0.0f)),
+        Vertex(glm::vec3( 0.3f,  0.7f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(1.0f, 0.0f)),
+
+        Vertex(glm::vec3(-0.3f,  1.0f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(0.0f, 1.0f)),
+        Vertex(glm::vec3( 0.3f,  0.7f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(1.0f, 0.0f)),
+        Vertex(glm::vec3( 0.3f,  1.0f, 0.0f), glm::vec3( 0.0f,  0.0f, 1.0f),  glm::vec2(1.0f, 1.0f))
     };
 
     vector<Vertex> skyboxVertices =
