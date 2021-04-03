@@ -48,9 +48,6 @@
     <ClCompile Include="Model.cpp">
       <Filter>cpps</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
-      <Filter>shaders</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h">
@@ -236,6 +233,18 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="parallax_mapping_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="hdr_lighting_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="hdr_lighting_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="hdr_hdr_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="hdr_hdr_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

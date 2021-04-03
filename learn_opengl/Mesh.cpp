@@ -130,6 +130,7 @@ Mesh::Mesh(vector<Vertex> vertices, vector<Texture> textures, vector<unsigned in
 void Mesh::draw(Shader& shader, const GLenum mode)
 {
 	bindTextures(shader);
+	shader.use();
 
 	glBindVertexArray(VAO);
 	if (instanceCount == 1)

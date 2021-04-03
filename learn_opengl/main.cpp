@@ -51,12 +51,27 @@ int main()
 	// Setup some OpenGL options
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
-	glCullFace(GL_BACK);
+	//glCullFace(GL_BACK);
 
 	glViewport(0, 0, screen_width, screen_height);
 
 	// Setup and compile our shaders
-	Shader shader("parallax_mapping_vertex.glsl", "parallax_mapping_fragment.glsl");
+	Shader shader("hdr_lighting_vertex.glsl", "hdr_lighting_fragment.glsl");
+	//Shader shader("vertex_core.glsl", "fragment_singleColor.glsl");
+	Shader hdrShader("hdr_hdr_vertex.glsl", "hdr_hdr_fragment.glsl");
+
+	vector<glm::vec3> lightPositions;
+	lightPositions.push_back(glm::vec3( 0.0f,  0.0f, 49.5f));
+	lightPositions.push_back(glm::vec3(-1.4f, -1.9f,  9.0f));
+	lightPositions.push_back(glm::vec3( 0.0f, -1.8f,  4.0f));
+	lightPositions.push_back(glm::vec3( 0.8f, -1.7f,  6.0f));
+
+	vector<glm::vec3> lightColors;
+	lightColors.push_back(glm::vec3(200.0f, 200.0f, 200.0f));
+	lightColors.push_back(glm::vec3(  0.1f,   0.0f,   0.0f));
+	lightColors.push_back(glm::vec3(  0.0f,   0.0f,   0.2f));
+	lightColors.push_back(glm::vec3(  0.0f,   0.1f,   0.0f));
+
 
 	// First. We get the relevant block indices
 	GLuint uniformBlockIndexShader = shader.getUniformBlockIndex("Matrices");
@@ -73,89 +88,85 @@ int main()
 	glBindBufferRange(GL_UNIFORM_BUFFER, 0, uboMatrices, 0, 2 * sizeof(glm::mat4));
 
 	// texture
-	Texture texBrick;
+	Texture texWood;
 	stbi_set_flip_vertically_on_load(0);
-	texBrick.id = loadTexture("Images/toy_box_diffuse.png", true);
-	texBrick.type = "texture_diffuse";
-	Texture texBrick_norm;
-	texBrick_norm.id = loadTexture("Images/toy_box_normal.png");
-	texBrick_norm.type = "texture_normal";
-	Texture texBrick_disp;
-	texBrick_disp.id = loadTexture("Images/toy_box_disp.png");
-	texBrick_disp.type = "texture_height";
+	texWood.id = loadTexture("Images/wood.png");
+	texWood.type = "texture_diffuse";
+
 	// mesh
-	vector<Vertex> vertices = Prim::quadVertices;
-	//vector<Vertex> vertices = Prim::cubeVertices;
-
-	for (size_t i = 0; i < vertices.size(); i += 3)
-	{
-		glm::vec3 edge1 = vertices[i + 1].position - vertices[i].position;
-		glm::vec3 edge2 = vertices[i + 2].position - vertices[i].position;
-		glm::vec2 deltaUV1 = vertices[i + 1].texCoord - vertices[i].texCoord;
-		glm::vec2 deltaUV2 = vertices[i + 2].texCoord - vertices[i].texCoord;
-
-		GLfloat f = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y);
-
-		glm::vec3 tangent(0.f);
-		tangent.x = f * (deltaUV2.y * edge1.x - deltaUV1.y * edge2.x);
-		tangent.y = f * (deltaUV2.y * edge1.y - deltaUV1.y * edge2.y);
-		tangent.z = f * (deltaUV2.y * edge1.z - deltaUV1.y * edge2.z);
-		vertices[i].tangent = glm::normalize(tangent);
-		vertices[i + 1].tangent = glm::normalize(tangent);
-		vertices[i + 2].tangent = glm::normalize(tangent);
-
-		glm::vec3 bitangent(0.f);
-		bitangent.x = f * (-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x);
-		bitangent.y = f * (-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y);
-		bitangent.z = f * (-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z);
-		vertices[i].bitangent = glm::normalize(bitangent);
-		vertices[i + 1].bitangent = glm::normalize(bitangent);
-		vertices[i + 2].bitangent = glm::normalize(bitangent);
-	}
-
-	Mesh cube(vertices);
-	cube.add_texture(texBrick);
-	cube.add_texture(texBrick_norm);
-	cube.add_texture(texBrick_disp);
-
-	// Light source
-	glm::vec3 lightPos(0.5f, 1.0f, 0.3f);
+	Mesh cube(Prim::cubeVertices);
+	Mesh quad(Prim::quadVertices);
+	cube.add_texture(texWood);
 
 	double delta = glfwGetTime();
-	bool parallax = true;
+
+	//GLuint fbo;
+	GLuint fbo;
+	glGenFramebuffers(1, &fbo);
+	// color buffer of framebuffer
+	Texture colorBuffer;
+	glGenTextures(1, &colorBuffer.id);
+	glBindTexture(GL_TEXTURE_2D, colorBuffer.id);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, screen_width, screen_height, 0, GL_RGBA, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	GLuint rbo;
+	glGenRenderbuffers(1, &rbo);
+	glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, screen_width, screen_height);
+	// attach buffers
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorBuffer.id, 0);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rbo);
+
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		cout << "Framebuffer not complete!" << endl;
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	colorBuffer.type = "hdrBuffer";
+	quad.add_texture(colorBuffer);
+	
 
 	while (!main_program.shouldClose())
 	{
 		main_program.begin_loop();
 		main_program.do_movement(camera);
-
-		//lightPos = glm::vec3(0.f, sin(glm::radians(glfwGetTime())), cos(glm::radians(glfwGetTime())));
-
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.1f, 0.1f, 0.1f, 1.f);
 
-        glm::mat4 projection = glm::perspective(camera.getFOV(), (float)screen_width / (float)screen_height, 0.1f, 100.0f);
-        glm::mat4 view = camera.getView();
+		float sin_ = sin(glfwGetTime()) * 50.f;
+		lightColors[0] = glm::vec3(50.f + sin_, 50.f + sin_, 50.f + sin_);
 
-		glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
-		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(projection));
-		glBufferSubData(GL_UNIFORM_BUFFER, sizeof(glm::mat4), sizeof(glm::mat4), glm::value_ptr(view));
-        
-		// Set light uniforms
-		shader.set3fv("lightPos", lightPos);
-		shader.set3fv("viewPos", camera.Position);
+		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-		glm::mat4 model = glm::mat4(1.0f);
-		shader.setMat4fv("model", model);
-		shader.setMat3fv("normalMat", getNormalMat(model));
-		shader.setFloat("height_scale", 0.2f);
-		if (glfwGetKey(main_program.window(), GLFW_KEY_J) == GLFW_PRESS && glfwGetTime() - 0.5 > delta)
-		{
-			parallax = !parallax;
-			delta = glfwGetTime();
-		}
-		shader.setBool("parallax", parallax);
-		cube.draw(shader);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			glm::mat4 projection = glm::perspective(camera.getFOV(), (float)screen_width / (float)screen_height, 0.1f, 100.0f);
+			glm::mat4 view = camera.getView();
+
+			glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
+			glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(projection));
+			glBufferSubData(GL_UNIFORM_BUFFER, sizeof(glm::mat4), sizeof(glm::mat4), glm::value_ptr(view));
+
+			// Set light uniforms
+			shader.set3fv("viewPos", camera.Position);
+			shader.set3fv_vector("lightsPos", lightPositions);
+			shader.set3fv_vector("lightsColors", lightColors);
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(0.f, 0.f, 25.f));
+			model = glm::scale(model, glm::vec3(5.f, 5.f, 55.f));
+
+			shader.setMat4fv("model", model);
+			shader.setMat3fv("normalMat", getNormalMat(model));
+			glCullFace(GL_FRONT);
+			shader.setBool("reverse_normals", true);
+			cube.draw(shader);
+			glCullFace(GL_BACK);
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			quad.draw(hdrShader);
 
 		main_program.end_loop();
 	}

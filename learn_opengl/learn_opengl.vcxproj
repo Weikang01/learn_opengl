@@ -152,7 +152,6 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Structures.cpp" />
   </ItemGroup>
@@ -188,6 +187,10 @@
     <None Include="fragment_skybox.glsl" />
     <None Include="frontFacing_fragment.glsl" />
     <None Include="frontFacing_vertex.glsl" />
+    <None Include="hdr_hdr_fragment.glsl" />
+    <None Include="hdr_hdr_vertex.glsl" />
+    <None Include="hdr_lighting_fragment.glsl" />
+    <None Include="hdr_lighting_vertex.glsl" />
     <None Include="instance_fragment.glsl" />
     <None Include="instance_vertex.glsl" />
     <None Include="lamp_fragment.glsl" />
