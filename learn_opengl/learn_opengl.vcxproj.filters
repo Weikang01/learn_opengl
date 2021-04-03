@@ -1,95 +1,242 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="stb">
       <UniqueIdentifier>{8563228c-1557-4f3c-bb4c-d937efcbe3b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="main">
       <UniqueIdentifier>{a1fb244d-80ef-44c2-b162-38511da29d06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="cpps">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>cpps</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>cpps</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>cpps</Filter>
     </ClCompile>
     <ClCompile Include="stb_image.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>cpps</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>cpps</Filter>
     </ClCompile>
     <ClCompile Include="Libs.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>cpps</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>main</Filter>
     </ClCompile>
     <ClCompile Include="Structures.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h">
-      <Filter>Header Files</Filter>
+      <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Libs.h">
-      <Filter>Header Files</Filter>
+      <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
+      <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Header Files</Filter>
+      <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>stb</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
+      <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Structures.h">
-      <Filter>Header Files</Filter>
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex_core.glsl">
-      <Filter>Resource Files</Filter>
+      <Filter>shaders</Filter>
     </None>
     <None Include="fragment_core.glsl">
-      <Filter>Resource Files</Filter>
+      <Filter>shaders</Filter>
     </None>
     <None Include="lighting_vertex.glsl">
-      <Filter>Resource Files</Filter>
+      <Filter>shaders</Filter>
     </None>
     <None Include="lighting_fragment.glsl">
-      <Filter>Resource Files</Filter>
+      <Filter>shaders</Filter>
     </None>
     <None Include="lamp_fragment.glsl">
-      <Filter>Resource Files</Filter>
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="vertex_modelLoading.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="fragment_modelLoading.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="fragment_singleColor.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="fragment_singleTex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="vertex_screen.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="fragment_screen.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="vertex_skybox.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="fragment_skybox.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="reflex_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="reflex_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="cubemap_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="cubemap_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="pointSize_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="pointSize_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="frontFacing_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="frontFacing_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="test_geometry.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="pass_through_geometry.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="pass_through_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="pass_through_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="explode_geometry.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="explode_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="explode_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="normal_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="normal_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="normal_geometry.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="instance_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="instance_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="rock_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="rock_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="blinn_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="blinn_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="simpleDepth_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="simpleDepth_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="debug_quad_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="debug_quad_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shadow_mapping_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shadow_mapping_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="point_shadows_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="point_shadows_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="cubeDepth_vertices.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="cubeDepth_geometry.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="cubeDepth_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="normal_tex_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="normal_tex_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="parallax_mapping_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="parallax_mapping_vertex.glsl">
+      <Filter>shaders</Filter>
     </None>
   </ItemGroup>
 </Project>
