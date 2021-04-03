@@ -198,6 +198,8 @@
     <None Include="normal_tex_fragment.glsl" />
     <None Include="normal_tex_vertex.glsl" />
     <None Include="normal_vertex.glsl" />
+    <None Include="parallax_mapping_fragment.glsl" />
+    <None Include="parallax_mapping_vertex.glsl" />
     <None Include="pass_through_fragment.glsl" />
     <None Include="pass_through_geometry.glsl" />
     <None Include="pass_through_vertex.glsl" />

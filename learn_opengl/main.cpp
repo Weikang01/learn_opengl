@@ -56,7 +56,7 @@ int main()
 	glViewport(0, 0, screen_width, screen_height);
 
 	// Setup and compile our shaders
-	Shader shader("normal_tex_vertex.glsl", "normal_tex_fragment.glsl");
+	Shader shader("parallax_mapping_vertex.glsl", "parallax_mapping_fragment.glsl");
 
 	// First. We get the relevant block indices
 	GLuint uniformBlockIndexShader = shader.getUniformBlockIndex("Matrices");
@@ -73,16 +73,19 @@ int main()
 	glBindBufferRange(GL_UNIFORM_BUFFER, 0, uboMatrices, 0, 2 * sizeof(glm::mat4));
 
 	// texture
-	Texture texWall;
+	Texture texBrick;
 	stbi_set_flip_vertically_on_load(0);
-	texWall.id = loadTexture("Images/brickwall.jpg");
-	texWall.type = "texture_diffuse";
-	Texture texWall_norm;
-	texWall_norm.id = loadTexture("Images/brickwall_normal.jpg");
-	texWall_norm.type = "texture_normal";
-
+	texBrick.id = loadTexture("Images/toy_box_diffuse.png", true);
+	texBrick.type = "texture_diffuse";
+	Texture texBrick_norm;
+	texBrick_norm.id = loadTexture("Images/toy_box_normal.png");
+	texBrick_norm.type = "texture_normal";
+	Texture texBrick_disp;
+	texBrick_disp.id = loadTexture("Images/toy_box_disp.png");
+	texBrick_disp.type = "texture_height";
 	// mesh
-	vector<Vertex> vertices = Prim::cubeVertices;
+	vector<Vertex> vertices = Prim::quadVertices;
+	//vector<Vertex> vertices = Prim::cubeVertices;
 
 	for (size_t i = 0; i < vertices.size(); i += 3)
 	{
@@ -101,7 +104,6 @@ int main()
 		vertices[i + 1].tangent = glm::normalize(tangent);
 		vertices[i + 2].tangent = glm::normalize(tangent);
 
-
 		glm::vec3 bitangent(0.f);
 		bitangent.x = f * (-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x);
 		bitangent.y = f * (-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y);
@@ -112,21 +114,22 @@ int main()
 	}
 
 	Mesh cube(vertices);
-	cube.add_texture(texWall);
-	cube.add_texture(texWall_norm);
+	cube.add_texture(texBrick);
+	cube.add_texture(texBrick_norm);
+	cube.add_texture(texBrick_disp);
 
 	// Light source
-	glm::vec3 lightPos(0.0f, 1.0f, 1.0f);
+	glm::vec3 lightPos(0.5f, 1.0f, 0.3f);
 
 	double delta = glfwGetTime();
-	bool normalMap = true;
+	bool parallax = true;
 
 	while (!main_program.shouldClose())
 	{
 		main_program.begin_loop();
 		main_program.do_movement(camera);
 
-		lightPos = glm::vec3(0.f, sin(glm::radians(glfwGetTime())), cos(glm::radians(glfwGetTime())));
+		//lightPos = glm::vec3(0.f, sin(glm::radians(glfwGetTime())), cos(glm::radians(glfwGetTime())));
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.1f, 0.1f, 0.1f, 1.f);
@@ -145,6 +148,13 @@ int main()
 		glm::mat4 model = glm::mat4(1.0f);
 		shader.setMat4fv("model", model);
 		shader.setMat3fv("normalMat", getNormalMat(model));
+		shader.setFloat("height_scale", 0.2f);
+		if (glfwGetKey(main_program.window(), GLFW_KEY_J) == GLFW_PRESS && glfwGetTime() - 0.5 > delta)
+		{
+			parallax = !parallax;
+			delta = glfwGetTime();
+		}
+		shader.setBool("parallax", parallax);
 		cube.draw(shader);
 
 		main_program.end_loop();
