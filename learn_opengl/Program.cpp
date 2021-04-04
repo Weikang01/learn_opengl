@@ -56,13 +56,6 @@ Program::Program(const int screen_width, const int screen_height)
 	glfwSetWindowSizeCallback(m_window,
 		[](GLFWwindow* window, int width, int height) {glViewport(0, 0, width, height);});
 
-	// openGL options
-	glPolygonMode(GL_FRONT, GL_FILL);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_MULTISAMPLE);
-
 	stbi_set_flip_vertically_on_load(true);
 }
 

@@ -184,6 +184,12 @@
     <None Include="cubemap_vertex.glsl" />
     <None Include="debug_quad_fragment.glsl" />
     <None Include="debug_quad_vertex.glsl" />
+    <None Include="deferredShading_deferShader_fragment.glsl" />
+    <None Include="deferredShading_deferShader_vertex.glsl" />
+    <None Include="deferredShading_lightShader_fragment.glsl" />
+    <None Include="deferredShading_lightShader_vertex.glsl" />
+    <None Include="deferredShading_shader_fragment.glsl" />
+    <None Include="deferredShading_shader_vertex.glsl" />
     <None Include="explode_fragment.glsl" />
     <None Include="explode_geometry.glsl" />
     <None Include="explode_vertex.glsl" />

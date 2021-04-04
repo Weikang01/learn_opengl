@@ -271,5 +271,23 @@
     <None Include="bloom_blurShader_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
+    <None Include="deferredShading_shader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="deferredShading_shader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="deferredShading_deferShader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="deferredShading_deferShader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="deferredShading_lightShader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="deferredShading_lightShader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

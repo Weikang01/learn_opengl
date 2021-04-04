@@ -46,11 +46,11 @@ void Mesh::bindTextures(Shader& shader)
 		{
 			glActiveTexture(GL_TEXTURE0 + i);
 			shader.setInt(textures[i].type.c_str(), i);
+			//cout << i << "::" << this->textures[i].id <<"::"<< this->textures[i].type << endl;
 			glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
 			continue;
 		}
 		string name = textures[i].type;
-
 		glActiveTexture(GL_TEXTURE0 + i);
 		shader.setInt((name + number).c_str(), i);
 		glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
