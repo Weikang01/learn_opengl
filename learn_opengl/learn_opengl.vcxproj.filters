@@ -247,5 +247,29 @@
     <None Include="hdr_hdr_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
+    <None Include="bloom_shader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bloom_shader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bloom_lightShader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bloom_lightShader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bloom_finalShader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bloom_finalShader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bloom_blurShader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bloom_blurShader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

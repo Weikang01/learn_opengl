@@ -17,6 +17,11 @@ public:
 
 	void draw(Shader& shader, const GLenum mode = GL_TRIANGLES);
 	void add_texture(const Texture texture);
+	void set_texture(const Texture texture);
+	void set_texture(const Texture texture, const unsigned int index);
+	void set_textures(const vector<Texture> textures);
+	void print_textures() const;
+	void clear_texture();
 	void instantiate(unsigned int count);
 	void setInstanceUniform(Shader& shader, vector<glm::vec2> uniform, const string& name);
 private:

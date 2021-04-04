@@ -104,6 +104,36 @@ void Mesh::add_texture(const Texture texture)
 	this->textures.push_back(texture);
 }
 
+void Mesh::set_texture(const Texture texture)
+{
+	this->textures.clear();
+	textures.push_back(texture);
+}
+
+void Mesh::set_texture(const Texture texture, const unsigned int index)
+{
+	textures[index] = texture;
+}
+
+void Mesh::set_textures(const vector<Texture> textures)
+{
+	this->textures = textures;
+}
+
+void Mesh::print_textures() const
+{
+	for (size_t i = 0; i < textures.size(); i++)
+	{
+		cout << textures[i].type << "::" << textures[i].id << " || ";
+	}
+	cout << endl;
+}
+
+void Mesh::clear_texture()
+{
+	this->textures.clear();
+}
+
 void Mesh::instantiate(unsigned int count)
 {
 	instanceCount = count;

@@ -169,6 +169,14 @@
   <ItemGroup>
     <None Include="blinn_fragment.glsl" />
     <None Include="blinn_vertex.glsl" />
+    <None Include="bloom_blurShader_fragment.glsl" />
+    <None Include="bloom_blurShader_vertex.glsl" />
+    <None Include="bloom_finalShader_fragment.glsl" />
+    <None Include="bloom_finalShader_vertex.glsl" />
+    <None Include="bloom_lightShader_fragment.glsl" />
+    <None Include="bloom_lightShader_vertex.glsl" />
+    <None Include="bloom_shader_fragment.glsl" />
+    <None Include="bloom_shader_vertex.glsl" />
     <None Include="cubeDepth_fragment.glsl" />
     <None Include="cubeDepth_geometry.glsl" />
     <None Include="cubeDepth_vertices.glsl" />
