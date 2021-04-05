@@ -112,7 +112,10 @@ void Mesh::set_texture(const Texture texture)
 
 void Mesh::set_texture(const Texture texture, const unsigned int index)
 {
-	textures[index] = texture;
+	if (index == textures.size())
+		textures.push_back(texture);
+	else
+		textures[index] = texture;
 }
 
 void Mesh::set_textures(const vector<Texture> textures)

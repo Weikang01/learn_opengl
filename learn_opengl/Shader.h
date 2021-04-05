@@ -25,6 +25,7 @@ public:
 	void setBool(int location, bool value) const;
 
 	void setInt(const string& name, int value) const;
+	void setInt(const string& listName, const string& memberName, const int& value) const;
 	void setInt(const string& listName, const string& memberName, int value, const unsigned int& idx) const;
 	void setInt(int location, int value) const;
 	void setInt_vector(const string& name, const vector<int> vec) const;
@@ -33,6 +34,7 @@ public:
 	void setInt_vector(const string& listName, const string& memberName, const int& value, const unsigned int& size) const;
 	
 	void setFloat(const string& name, float value) const;
+	void setFloat(const string& listName, const string& memberName, const float& value) const;
 	void setFloat(const string& listName, const string& memberName, float value, const unsigned int& idx) const;
 	void setFloat(int location, float value) const;
 	void setFloat_vector(const string& name, const vector<float>& vec) const;
@@ -41,6 +43,7 @@ public:
 	void setFloat_vector(const string& listName, const string& memberName, const float& value, const unsigned int& size) const;
 
 	void set2fv(const string& name, const glm::vec2& vec) const;
+	void set2fv(const string& listName, const string& memberName, const glm::vec2& vec) const;
 	void set2fv(const string& listName, const string& memberName, const glm::vec2& vec, const unsigned int& idx) const;
 	void set2fv(int location, const glm::vec2& vec) const;
 	void set2f(const string& name, float v1, float v2) const;
@@ -51,6 +54,7 @@ public:
 	void set2fv_vector(const string& listName, const string& memberName, const glm::vec2& vec, const unsigned int& size) const;
 	
 	void set3fv(const string& name, const glm::vec3& vec) const;
+	void set3fv(const string& listName, const string& memberName, const glm::vec3& vec) const;
 	void set3fv(const string& listName, const string& memberName, const glm::vec3& vec, const unsigned int& idx) const;
 	void set3fv(int location, const glm::vec3& vec) const;
 	void set3f(const string& name, float v1, float v2, float v3) const;
@@ -61,6 +65,7 @@ public:
 	void set3fv_vector(const string& listName, const string& memberName, const glm::vec3& vec, const unsigned int& size) const;
 	
 	void set4fv(const string& name, const glm::vec4& vec) const;
+	void set4fv(const string& listName, const string& memberName, const glm::vec4& vec) const;
 	void set4fv(const string& listName, const string& memberName, const glm::vec4& vec, const unsigned int& idx) const;
 	void set4fv(int location, const glm::vec4& vec) const;
 	void set4f(const string& name, float v1, float v2, float v3, float v4) const;
@@ -71,6 +76,7 @@ public:
 	void set4fv_vector(const string& listName, const string& memberName, const glm::vec4& vec, const unsigned int& size) const;
 	
 	void setMat3fv(const string& name, const glm::mat3& mat, bool transpose = false) const;
+	void setMat3fv(const string& listName, const string& memberName, const glm::mat3& mat, bool transpose = false) const;
 	void setMat3fv(const string& listName, const string& memberName, const glm::mat3& mat, const unsigned int& idx, bool transpose = false) const;
 	void setMat3fv(int location, const glm::mat3& mat, bool transpose = false) const;
 	void setMat3fv_vector(const string& name, const vector<glm::mat3>& vec, bool transpose = false) const;
@@ -79,6 +85,7 @@ public:
 	void setMat3fv_vector(const string& listName, const string& memberName, const glm::mat3& mat, const unsigned int& size, bool transpose = false) const;
 	
 	void setMat4fv(const string& name, const glm::mat4& mat, bool transpose = false) const;
+	void setMat4fv(const string& listName, const string& memberName, const glm::mat4& mat, bool transpose = false) const;
 	void setMat4fv(const string& listName, const string& memberName, const glm::mat4& mat, const unsigned int& idx, bool transpose = false) const;
 	void setMat4fv(int location, const glm::mat4& mat, bool transpose = false) const;
 	void setMat4fv_vector(const string& name, const vector<glm::mat4>& vec, bool transpose = false) const;

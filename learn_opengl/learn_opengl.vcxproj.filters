@@ -289,5 +289,29 @@
     <None Include="deferredShading_lightShader_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
+    <None Include="SSAO_shader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="SSAO_shader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="SSAO_deferShader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="SSAO_deferShader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="SSAO_SSAOshader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="SSAO_SSAOshader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="SSAO_SSAOblurShader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="SSAO_SSAOblurShader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

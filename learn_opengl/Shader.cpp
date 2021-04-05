@@ -117,12 +117,17 @@ void Shader::setInt(const string& name, int value) const
 	glUniform1i(glGetUniformLocation(id, name.c_str()), value);
 }
 
+void Shader::setInt(const string& listName, const string& memberName, const int& value) const
+{
+	glUseProgram(id);
+	glUniform1i(glGetUniformLocation(id, (listName + "." + memberName).c_str()), value);
+}
+
 void Shader::setInt(const string& listName, const string& memberName, int value, const unsigned int& idx) const
 {
 	glUseProgram(id);
 	glUniform1i(getUniformBlockIndex(listName, memberName, idx), value);
 }
-
 
 void Shader::setInt(int location, int value) const
 {
@@ -162,6 +167,12 @@ void Shader::setFloat(const string& name, float value) const
 {
 	glUseProgram(id);
 	glUniform1f(glGetUniformLocation(id, name.c_str()), value);
+}
+
+void Shader::setFloat(const string& listName, const string& memberName, const float& value) const
+{
+	glUseProgram(id);
+	glUniform1f(glGetUniformLocation(id, (listName + "." + memberName).c_str()), value);
 }
 
 void Shader::setFloat(const string& listName, const string& memberName, float value, const unsigned int& idx) const
@@ -208,6 +219,12 @@ void Shader::set2fv(const string& name, const glm::vec2& vec) const
 {
 	glUseProgram(id);
 	glUniform2fv(glGetUniformLocation(id, name.c_str()), 1, glm::value_ptr(vec));
+}
+
+void Shader::set2fv(const string& listName, const string& memberName, const glm::vec2& vec) const
+{
+	glUseProgram(id);
+	glUniform2fv(glGetUniformLocation(id, (listName + "." + memberName).c_str()), 1, glm::value_ptr(vec));
 }
 
 void Shader::set2fv(const string& listName, const string& memberName, const glm::vec2& vec, const unsigned int& idx) const
@@ -266,6 +283,12 @@ void Shader::set3fv(const string& name, const glm::vec3& vec) const
 {
 	glUseProgram(id);
 	glUniform3fv(glGetUniformLocation(id, name.c_str()), 1, glm::value_ptr(vec));
+}
+
+void Shader::set3fv(const string& listName, const string& memberName, const glm::vec3& vec) const
+{
+	glUseProgram(id);
+	glUniform3fv(glGetUniformLocation(id, (listName + "." + memberName).c_str()), 1, glm::value_ptr(vec));
 }
 
 void Shader::set3fv(const string& listName, const string& memberName, const glm::vec3& vec, const unsigned int& idx) const
@@ -332,6 +355,12 @@ void Shader::set4fv(const string& name, const glm::vec4& vec) const
 	glUniform4fv(glGetUniformLocation(id, name.c_str()), 1, glm::value_ptr(vec));
 }
 
+void Shader::set4fv(const string& listName, const string& memberName, const glm::vec4& vec) const
+{
+	glUseProgram(id);
+	glUniform4fv(glGetUniformLocation(id, (listName + "." + memberName).c_str()), 1, glm::value_ptr(vec));
+}
+
 void Shader::set4fv(const string& listName, const string& memberName, const glm::vec4& vec, const unsigned int& idx) const
 {
 	glUseProgram(id);
@@ -382,6 +411,12 @@ void Shader::setMat3fv(const string& name, const glm::mat3& mat, bool transpose)
 	glUniformMatrix3fv(glGetUniformLocation(id, name.c_str()), 1, transpose, glm::value_ptr(mat));
 }
 
+void Shader::setMat3fv(const string& listName, const string& memberName, const glm::mat3& mat, bool transpose) const
+{
+	glUseProgram(id);
+	glUniformMatrix3fv(glGetUniformLocation(id, (listName + "." + memberName).c_str()), 1, transpose, glm::value_ptr(mat));
+}
+
 void Shader::setMat3fv(const string& listName, const string& memberName, const glm::mat3& mat, const unsigned int& idx, bool transpose) const
 {
 	glUseProgram(id);
@@ -426,6 +461,12 @@ void Shader::setMat4fv(const string& name, const glm::mat4& mat, bool transpose)
 {
 	glUseProgram(id);
 	glUniformMatrix4fv(glGetUniformLocation(id, name.c_str()), 1, transpose, glm::value_ptr(mat));
+}
+
+void Shader::setMat4fv(const string& listName, const string& memberName, const glm::mat4& mat, bool transpose) const
+{
+	glUseProgram(id);
+	glUniformMatrix4fv(glGetUniformLocation(id, (listName + "." + memberName).c_str()), 1, transpose, glm::value_ptr(mat));
 }
 
 void Shader::setMat4fv(const string& listName, const string& memberName, const glm::mat4& mat, const unsigned int& idx, bool transpose) const

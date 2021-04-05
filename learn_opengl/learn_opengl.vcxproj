@@ -232,6 +232,14 @@
     <None Include="shadow_mapping_vertex.glsl" />
     <None Include="simpleDepth_fragment.glsl" />
     <None Include="simpleDepth_vertex.glsl" />
+    <None Include="SSAO_deferShader_fragment.glsl" />
+    <None Include="SSAO_deferShader_vertex.glsl" />
+    <None Include="SSAO_shader_fragment.glsl" />
+    <None Include="SSAO_shader_vertex.glsl" />
+    <None Include="SSAO_SSAOblurShader_fragment.glsl" />
+    <None Include="SSAO_SSAOblurShader_vertex.glsl" />
+    <None Include="SSAO_SSAOshader_fragment.glsl" />
+    <None Include="SSAO_SSAOshader_vertex.glsl" />
     <None Include="test_geometry.glsl" />
     <None Include="vertex_core.glsl" />
     <None Include="vertex_modelLoading.glsl" />
