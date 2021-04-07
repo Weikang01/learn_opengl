@@ -313,5 +313,17 @@
     <None Include="SSAO_SSAOblurShader_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
+    <None Include="PBR_shader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_shader_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_shader_fragment_noText.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_shader_vertex_noText.glsl">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

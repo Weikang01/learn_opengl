@@ -9,8 +9,11 @@ void Mesh::bindTextures(Shader& shader)
 	unsigned int diffuseNr = 1;
 	unsigned int specularNr = 1;
 	unsigned int reflectionNr = 1;
+	unsigned int metallicNr = 1;
+	unsigned int roughnessNr = 1;
 	unsigned int normalNr = 1;
 	unsigned int heightNr = 1;
+	unsigned int aoNr = 1;
 
 	for (size_t i = 0; i < textures.size(); i++)
 	{
@@ -23,6 +26,14 @@ void Mesh::bindTextures(Shader& shader)
 		{
 			number = to_string(specularNr++);
 		}
+		else if (textures[i].type == "texture_metallic")
+		{
+			number = to_string(metallicNr++);
+		}
+		else if (textures[i].type == "texture_roughness")
+		{
+			number = to_string(roughnessNr++);
+		}
 		else if (textures[i].type == "texture_reflection")
 		{
 			number = to_string(reflectionNr++);
@@ -34,6 +45,10 @@ void Mesh::bindTextures(Shader& shader)
 		else if (textures[i].type == "texture_height")
 		{
 			number = to_string(heightNr++);
+		}
+		else if (textures[i].type == "texture_ao")
+		{
+			number = to_string(aoNr++);
 		}
 		else if (textures[i].type == "skybox" || textures[i].type == "cubemap" || textures[i].type == "depthCubeMap")
 		{
@@ -166,6 +181,7 @@ void Mesh::draw(Shader& shader, const GLenum mode)
 	shader.use();
 
 	glBindVertexArray(VAO);
+
 	if (instanceCount == 1)
 		if (EBO > 0)
 			glDrawElements(mode, indices.size(), GL_UNSIGNED_INT, 0);
@@ -181,3 +197,61 @@ void Mesh::draw(Shader& shader, const GLenum mode)
 	glActiveTexture(0);
 }
 
+Mesh drawSphere(const unsigned int X_SEGMENTS, const unsigned int Y_SEGMENTS, const vector<Texture> textures)
+{
+	vector<Vertex> vertices;
+	const float PI = 3.14159265359f;
+
+	for (size_t y = 0; y <= Y_SEGMENTS; y++)
+	{
+		for (size_t x = 0; x <= X_SEGMENTS; x++)
+		{
+			float x_segment = float(x) / float(X_SEGMENTS);
+			float y_segment = float(y) / float(Y_SEGMENTS);
+
+			float posX = cos(x_segment * 2.f * PI) * sin(y_segment *  PI);
+			float posY = cos(y_segment * PI);
+			float posZ = sin(x_segment * 2.f * PI) * sin(y_segment *  PI);
+
+			glm::vec3 position(posX, posY, posZ);
+			glm::vec2 uv(x_segment, y_segment);
+			glm::vec3 normal(posX, posY, posZ);
+
+			float tanX = -sin(x_segment * 2.f * PI) * sin(y_segment * PI);
+			float tanZ = cos(x_segment * 2.f * PI) * sin(y_segment * PI);
+			glm::vec3 tangent(tanX, 0.f, tanZ);
+
+			Vertex v(position, normal, uv);
+			v.tangent = tangent;
+			v.bitangent = glm::cross(normal, tangent);
+
+			vertices.push_back(v);
+		}
+	}
+
+	vector<unsigned int> indices;
+
+	bool oddRow = false;
+	for (size_t y = 0; y < Y_SEGMENTS; ++y)
+	{
+		if (!oddRow)
+		{
+			for (size_t x = 0; x <= X_SEGMENTS; ++x)
+			{
+				indices.push_back((y + 1) * (X_SEGMENTS + 1) + x);
+				indices.push_back(y       * (X_SEGMENTS + 1) + x);
+			}
+		}
+		else
+		{
+			for (int x = X_SEGMENTS; x >= 0; --x)
+			{
+				indices.push_back(y       * (X_SEGMENTS + 1) + x);
+				indices.push_back((y + 1) * (X_SEGMENTS + 1) + x);
+			}
+		}
+		oddRow = !oddRow;
+	}
+
+	return Mesh(vertices, textures, indices);
+}

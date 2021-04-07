@@ -220,6 +220,10 @@
     <None Include="pass_through_fragment.glsl" />
     <None Include="pass_through_geometry.glsl" />
     <None Include="pass_through_vertex.glsl" />
+    <None Include="PBR_shader_fragment.glsl" />
+    <None Include="PBR_shader_fragment_noText.glsl" />
+    <None Include="PBR_shader_vertex.glsl" />
+    <None Include="PBR_shader_vertex_noText.glsl" />
     <None Include="pointSize_fragment.glsl" />
     <None Include="pointSize_vertex.glsl" />
     <None Include="point_shadows_fragment.glsl" />

@@ -32,3 +32,5 @@ private:
 	void bindTextures(Shader& shader);
 	void setupMesh();
 };
+
+Mesh drawSphere(const unsigned int x_segments, const unsigned int y_segments, const vector<Texture> textures = vector<Texture>());
