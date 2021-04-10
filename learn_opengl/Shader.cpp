@@ -1,6 +1,25 @@
 #include "Shader.h"
 
 
+unsigned int Shader::loadShader(const char* code, GLenum type, int dummy)
+{
+	unsigned int shaderId;
+	shaderId = glCreateShader(type);
+	glShaderSource(shaderId, 1, &code, NULL);
+	glCompileShader(shaderId);
+
+	int success;
+	char infoLog[512];
+	glGetShaderiv(shaderId, GL_COMPILE_STATUS, &success);
+	if (!success)
+	{
+		glGetShaderInfoLog(shaderId, 512, NULL, infoLog);
+		cout << "SHADER_COMPILATION_FAILED::" << infoLog << code << "::TYPE::" << type << endl;
+	}
+
+	return shaderId;
+}
+
 unsigned int Shader::loadShader(const char* fileName, GLenum type)
 {
 	string codeString;
@@ -19,40 +38,15 @@ unsigned int Shader::loadShader(const char* fileName, GLenum type)
 	}
 	const char* code = codeString.c_str();
 
-	unsigned int shaderId;
-	shaderId = glCreateShader(type);
-	glShaderSource(shaderId, 1, &code, NULL);
-	glCompileShader(shaderId);
-
-	int success;
-	char infoLog[512];
-	glGetShaderiv(shaderId, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(shaderId, 512, NULL, infoLog);
-		cout << "SHADER_COMPILATION_FAILED::" << infoLog << fileName << "::TYPE::" << type << endl;
-	}
-
-	return shaderId;
+	return loadShader(code, type, 0);
 }
 
-Shader::Shader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile)
-	:texSlotCounter(0)
+void Shader::loadProgram(unsigned int vertexId, unsigned int fragmentId, unsigned int geometryId)
 {
-	unsigned int vertexId = loadShader(vertexShaderFile, GL_VERTEX_SHADER);
-	unsigned int fragmentId = loadShader(fragmentShaderFile, GL_FRAGMENT_SHADER);
-
-	if (geometryShaderFile)
-	{
-
-	}
-
-	unsigned int geometryId = geometryShaderFile ? loadShader(geometryShaderFile, GL_GEOMETRY_SHADER) : 0;
-
 	id = glCreateProgram();
 	glAttachShader(id, vertexId);
 	glAttachShader(id, fragmentId);
-	if (geometryId){ glAttachShader(id, geometryId); }
+	if (geometryId) { glAttachShader(id, geometryId); }
 	glLinkProgram(id);
 
 	int success;
@@ -67,6 +61,24 @@ Shader::Shader(const char* vertexShaderFile, const char* fragmentShaderFile, con
 	glDeleteShader(vertexId);
 	glDeleteShader(fragmentId);
 	if (geometryId) { glDeleteShader(geometryId); }
+}
+
+Shader::Shader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile)
+	:texSlotCounter(0)
+{
+	unsigned int vertexId = loadShader(vertexShaderFile, GL_VERTEX_SHADER);
+	unsigned int fragmentId = loadShader(fragmentShaderFile, GL_FRAGMENT_SHADER);
+	unsigned int geometryId = geometryShaderFile ? loadShader(geometryShaderFile, GL_GEOMETRY_SHADER) : 0;
+	loadProgram(vertexId, fragmentId, geometryId);
+}
+
+Shader::Shader(int dummy, const char* vertexShaderCode, const char* fragmentShaderCode, const char* geometricShaderCode)
+	:texSlotCounter(0)
+{
+	unsigned int vertexId = loadShader(vertexShaderCode, GL_VERTEX_SHADER, 0);
+	unsigned int fragmentId = loadShader(fragmentShaderCode, GL_FRAGMENT_SHADER, 0);
+	unsigned int geometryId = geometricShaderCode ? loadShader(geometricShaderCode, GL_GEOMETRY_SHADER, 0) : 0;
+	loadProgram(vertexId, fragmentId, geometryId);
 }
 
 Shader::~Shader()

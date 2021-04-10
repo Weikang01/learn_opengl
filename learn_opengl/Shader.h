@@ -8,9 +8,12 @@ public:
 	unsigned int texSlotCounter;
 private:
 	unsigned int id;
+	unsigned int loadShader(const char* code, GLenum type, int dummy);
 	unsigned int loadShader(const char* fileName, GLenum type);
+	void loadProgram(unsigned int vertexId, unsigned int fragmentId, unsigned int geometryId);
 public:
 	Shader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometricShaderFile = nullptr);
+	Shader(int dummy, const char* vertexShaderCode, const char* fragmentShaderCode, const char* geometricShaderCode = nullptr);
 	~Shader();
 	unsigned int getId()const { return id; }
 	void use();

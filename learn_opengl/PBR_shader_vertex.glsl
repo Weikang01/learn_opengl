@@ -49,7 +49,7 @@ void main()
 		vs_out.LightColor[i] = light[i].color;
 	}
 	vs_out.TangentViewPos  = TBN * viewPos;
-	vs_out.TangentFragPos  = TBN * vec3(model * vec4(position, 0.0));
+	vs_out.TangentFragPos  = TBN * vec3(model * vec4(position, 1.0f));
 
 
 	gl_Position = projection * view * model * vec4(position, 1.f);

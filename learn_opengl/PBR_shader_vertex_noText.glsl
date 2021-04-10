@@ -22,7 +22,7 @@ out VS_OUT{
 void main()
 {
 	vs_out.TexCoord = texCoord;
-	vs_out.FragPos = vec3(model * vec4(position, 0.0));
+	vs_out.FragPos = vec3(model * vec4(position, 1.0f));
 	vs_out.Normal = normalMat * normal;
 
 	gl_Position = projection * view * model * vec4(position, 1.f);

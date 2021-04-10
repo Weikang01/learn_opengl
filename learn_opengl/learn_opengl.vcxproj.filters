@@ -325,5 +325,26 @@
     <None Include="PBR_shader_vertex_noText.glsl">
       <Filter>shaders</Filter>
     </None>
+    <None Include="rectangular2cubemap_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="rectangular2cubemap_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_skybox_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_skybox_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_shader_fragment_noText_env.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_shader_fragment_env.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_irradiance_convolution_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

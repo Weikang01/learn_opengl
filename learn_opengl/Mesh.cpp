@@ -50,7 +50,7 @@ void Mesh::bindTextures(Shader& shader)
 		{
 			number = to_string(aoNr++);
 		}
-		else if (textures[i].type == "skybox" || textures[i].type == "cubemap" || textures[i].type == "depthCubeMap")
+		else if (textures[i].type == "skybox" || textures[i].type.find("cubemap") != string::npos || textures[i].type == "depthCubeMap")
 		{
 			glActiveTexture(GL_TEXTURE0 + i);
 			shader.setInt(textures[i].type.c_str(), i);
