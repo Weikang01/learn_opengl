@@ -258,6 +258,8 @@
     <None Include="SSAO_SSAOshader_fragment.glsl" />
     <None Include="SSAO_SSAOshader_vertex.glsl" />
     <None Include="test_geometry.glsl" />
+    <None Include="text_fragment.glsl" />
+    <None Include="text_vertex.glsl" />
     <None Include="vertex_core.glsl" />
     <None Include="vertex_modelLoading.glsl" />
     <None Include="vertex_screen.glsl" />

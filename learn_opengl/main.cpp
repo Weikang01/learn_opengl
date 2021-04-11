@@ -4,6 +4,7 @@
 #include "Structures.h"
 #include "Primitive.h"
 
+#include FT_FREETYPE_H
 #define APIENTRY GLAPIENTRY
 #define ASSERT(x) if(!(x)) __debugbreak();
 #define GLCall(x) GLClearError();\
@@ -39,7 +40,8 @@ bool GLLogCall(const char* function, const char* file, int line)
 void APIENTRY glDebugOutput(GLenum source, GLenum type, GLuint id, GLenum severity,
 	GLsizei length, const GLchar* message, void* userParam);
 void GetFirstNMessages(GLuint numMsgs);
-
+void renderText(const Shader& shader, const string& text, GLfloat x, GLfloat y,
+	GLfloat scale, const glm::vec3& color);
 
 void drawScene(Shader& shader, Mesh& mesh, vector<Texture>& textures);
 GLuint loadTexture(const GLchar* path, bool gamma = false);
@@ -72,6 +74,8 @@ vector<glm::vec3> lightColors = {
 	glm::vec3(300.0f, 300.0f, 300.0f)
 };
 
+// character map
+map<GLchar, Character> Characters;
 
 int main()
 {
@@ -83,8 +87,9 @@ int main()
 
 	// Setup some OpenGL options
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//glEnable(GL_CULL_FACE);
 	//glCullFace(GL_BACK);
 	//glPolygonMode(GL_FRONT, GL_FILL);
@@ -92,181 +97,53 @@ int main()
 
 	glViewport(0, 0, screen_width, screen_height);
 	// Setup and compile our shaders
-	Shader shader("PBR_shader_vertex.glsl", "PBR_shader_fragment_env+spec.glsl");
-	Shader shader_noText("PBR_shader_vertex_noText.glsl", "PBR_shader_fragment_noText_env+spec.glsl");
-	Shader shader_skybox("PBR_skybox_vertex.glsl", "PBR_skybox_fragment.glsl");
-	Shader shader_irradiance("rectangular2cubemap_vertex.glsl", "PBR_irradiance_convolution_fragment.glsl");
-	Shader shader_prefiltConv("PBR_prefiltConv_shader_vertex.glsl", "PBR_prefiltConv_shader_fragment_noText.glsl");
-	Shader shader_BRDF("PBR_BRDF_vertex.glsl", "PBR_BRDF_fragment.glsl");
-	Shader shader_testQuad("vertex_screen.glsl", "fragment_singleTex.glsl");
+	Shader shader("text_vertex.glsl", "text_fragment.glsl");
 
-	// First. We get the relevant block indices
-	GLuint uniformBlockIndexShader = shader.getUniformBlockIndex("Matrices");
-	GLuint uniformBlockIndexShader_nt = shader_noText.getUniformBlockIndex("Matrices");
-	GLuint uniformBlockIndexSkybox = shader_skybox.getUniformBlockIndex("Matrices");
-	// Then we link each shader's uniform block to this uniform binding point
-	shader.uniformBlockBinding(uniformBlockIndexShader, 0);
-	shader_noText.uniformBlockBinding(uniformBlockIndexShader_nt, 0);
-	shader_skybox.uniformBlockBinding(uniformBlockIndexSkybox, 0);
-
-	shader_skybox.setInt("skybox", 0);
-
-	// Now actually create the buffer
-	GLuint uboMatrices;
-	glGenBuffers(1, &uboMatrices);
-	glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
-	glBufferData(GL_UNIFORM_BUFFER, 2 * sizeof(glm::mat4), NULL, GL_STATIC_DRAW);
-	glBindBuffer(GL_UNIFORM_BUFFER, 0);
-
-	glBindBufferRange(GL_UNIFORM_BUFFER, 0, uboMatrices, 0, 2 * sizeof(glm::mat4));
-
-	// mesh
-	Mesh sphere = drawSphere(32, 32);
-	Mesh cube(Prim::cubeVertices);
 	Mesh quad(Prim::quadVertices);
-	Model gun("Models/Cerberus_by_Andrew_Maximov/Cerberus_LP.FBX");
-
-
-	// texture -- bool: import textures or not
-	Texture texEnvironment;
-	GLuint* hdrPtr = loadTexture_hdr("Images/newport_loft.hdr");
-	GLuint environFBO = hdrPtr[1];
-	GLuint environRBO = hdrPtr[2];
-	texEnvironment.id = hdrPtr[0];
-	texEnvironment.type = "environment_cubemap";
-	Texture texMetal;
-	texMetal.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_A.tga");
-	texMetal.type = "texture_diffuse";
-	Texture texMetal_roughness;
-	texMetal_roughness.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_R.tga");
-	texMetal_roughness.type = "texture_roughness";
-	Texture texMetal_normal;
-	texMetal_normal.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_N.tga");
-	texMetal_normal.type = "texture_normal";
-	Texture texMetal_metal;
-	texMetal_metal.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_M.tga");
-	texMetal_metal.type = "texture_metallic";
-	Texture texMetal_ao;
-	texMetal_ao.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_AO.tga");
-	texMetal_ao.type = "texture_ao";
-
-	// pbr: create an irradiance cubemap, and re-scale capture FBO to irradiance scale.
-    // --------------------------------------------------------------------------------
-	Texture texIrradiance;
-	texIrradiance.type = "irradiance_cubemap";
-	glGenTextures(1, &texIrradiance.id);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, texIrradiance.id);
-	for (size_t i = 0; i < 6; i++)
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, 
-			32, 32, 0, GL_RGB, GL_FLOAT, nullptr);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	glm::mat4 projection = glm::perspective(glm::radians(90.f), 1.f, 0.1f, 10.f);
-	glm::mat4 views[] = {
-		glm::lookAt(glm::vec3(0.f), glm::vec3( 1.f,  0.f,  0.f), glm::vec3(0.f, -1.f,  0.f)),
-		glm::lookAt(glm::vec3(0.f), glm::vec3(-1.f,  0.f,  0.f), glm::vec3(0.f, -1.f,  0.f)),
-		glm::lookAt(glm::vec3(0.f), glm::vec3( 0.f,  1.f,  0.f), glm::vec3(0.f,  0.f,  1.f)),
-		glm::lookAt(glm::vec3(0.f), glm::vec3( 0.f, -1.f,  0.f), glm::vec3(0.f,  0.f, -1.f)),
-		glm::lookAt(glm::vec3(0.f), glm::vec3( 0.f,  0.f,  1.f), glm::vec3(0.f, -1.f,  0.f)),
-		glm::lookAt(glm::vec3(0.f), glm::vec3( 0.f,  0.f, -1.f), glm::vec3(0.f, -1.f,  0.f))
-	};
-	cube.set_texture(texEnvironment);
-	shader_irradiance.setMat4fv("projection", projection);
-	
-
-	glBindFramebuffer(GL_FRAMEBUFFER, environFBO);
-	glBindRenderbuffer(GL_RENDERBUFFER, environRBO);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
-
-	glViewport(0, 0, 32, 32);
-	for (size_t i = 0; i < 6; i++)
-	{
-		shader_irradiance.setMat4fv("view", views[i]);
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-			GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, texIrradiance.id, 0);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		cube.draw(shader_irradiance);
-	}
-
-	// pbr: create a pre-filter cubemap, and re-scale capture FBO to pre-filter scale.
-	// --------------------------------------------------------------------------------
-	Texture texPrefilter;
-	texPrefilter.type = "prefilter_cubemap";
-	glGenTextures(1, &texPrefilter.id);
-
-	glBindTexture(GL_TEXTURE_CUBE_MAP, texPrefilter.id);
-	for (size_t i = 0; i < 6; i++)
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F,
-			128, 128, 0, GL_RGB, GL_FLOAT, nullptr);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
-
-	// pbr: run a quasi monte-carlo simulation on the environment lighting to create a prefilter (cube)map.
-	// ----------------------------------------------------------------------------------------------------
-	shader_prefiltConv.setMat4fv("projection", projection);
-	
-	unsigned int maxMipLevels = 5;
-	for (unsigned int mip = 0; mip < maxMipLevels; mip++)
-	{
-		unsigned int mipWidth = 128 * std::pow(.5f, mip);
-		unsigned int mipHeight = 128 * std::pow(.5f, mip);
-
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, mipWidth, mipHeight);
-		glViewport(0, 0, mipWidth, mipHeight);
-
-		float roughness = (float)mip / (float)(maxMipLevels - 1);
-		shader_prefiltConv.setFloat("roughness", roughness);
-		for (unsigned int i = 0; i < 6; i++)
-		{
-			shader_prefiltConv.setMat4fv("view", views[i]);
-			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-				GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, texPrefilter.id, mip);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			cube.draw(shader_prefiltConv);
-		}
-	}
-	
-	Texture texBRDF;
-	texBRDF.type = "texture_brdf";
-	glGenTextures(1, &texBRDF.id);
-	glBindTexture(GL_TEXTURE_2D, texBRDF.id);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RG16F, 512, 512, 0, GL_RG, GL_FLOAT, nullptr);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	glViewport(0, 0, 512, 512);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 512, 512);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texBRDF.id, 0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	quad.draw(shader_BRDF);
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	glViewport(0, 0, screen_width, screen_height);
-
 	double delta = glfwGetTime();
 
 	bool first = true;
+	
+	// init FreeType Library
+	FT_Library ft;
+	if (FT_Init_FreeType(&ft))
+		cout << "ERROR::FREETYPE: Could not init FreeType Library" << endl;
 
+	FT_Face face;
+	if (FT_New_Face(ft, "Fonts/Antonio-Bold.ttf", 0, &face))
+		cout << "ERROR::FREETYPE: Failed to load font" << endl;
 
-	vector<Texture> textures_shader = { texIrradiance, texPrefilter, texBRDF, texMetal, texMetal_roughness,
-		texMetal_normal, texMetal_metal, texMetal_ao };
-	vector<Texture> textures_shader_noTex = { texIrradiance, texPrefilter, texBRDF };
+	FT_Set_Pixel_Sizes(face, 0, 48);
 
-	gun.set_textures(textures_shader);
-	gun.add_texture(texIrradiance);
-	gun.add_texture(texPrefilter);
-	gun.add_texture(texBRDF);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	for (GLubyte c = 0; c < 128; c++)
+	{
+		if (FT_Load_Char(face, c, FT_LOAD_RENDER))
+		{
+			cout << "ERROR::FREETYTPE: Failed to load Glyph" << endl;
+			continue;
+		}
+
+		GLuint texture;
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, face->glyph->bitmap.width,
+			face->glyph->bitmap.rows, 0, GL_RED, GL_UNSIGNED_BYTE, face->glyph->bitmap.buffer);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		Character character = { texture, glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
+		glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top), face->glyph->advance.x };
+		Characters.insert(std::pair<GLchar, Character>(c, character));
+	}
+	Characters['x'];
+	FT_Done_Face(face);
+	FT_Done_FreeType(ft);
+
+	glm::mat4 projection = glm::ortho(0.f, float(screen_width), 0.f, float(screen_height));
+	shader.setMat4fv("projection", projection);
 
 	while (!main_program.shouldClose())
 	{
@@ -275,34 +152,10 @@ int main()
 		glClearColor(0.1f, 0.1f, 0.1f, 1.f);
 		// generate gBuffer
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			//quad.draw(shader);
 
-			glm::mat4 projection = glm::perspective(camera.getFOV(), (float)screen_width / (float)screen_height, 0.1f, 100.0f);
-			glm::mat4 view = camera.getView();
-
-			glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
-			glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(projection));
-			glBufferSubData(GL_UNIFORM_BUFFER, sizeof(glm::mat4), sizeof(glm::mat4), glm::value_ptr(view));
-
-			//drawScene(shader, sphere, textures_shader);
-			shader.set3fv_vector("light", "position", lightPositions);
-			shader.set3fv_vector("light", "color", lightColors);
-			shader.set3fv("viewPos", camera.Position);
-			glm::mat4 model(1.0f);
-			model = glm::rotate(model, glm::radians(90.f), glm::vec3(1.f, 0.f, 0.f));
-			model = glm::rotate(model, glm::radians(180.f), glm::vec3(0.f, 1.f, 0.f));
-			model = glm::rotate(model, glm::radians(90.f), glm::vec3(0.f, 0.f, -1.f));
-			model = glm::scale(model, glm::vec3(.03f));
-			shader.setMat4fv("model", model);
-			shader.setMat3fv("normalMat", getNormalMat(model));
-
-			//gun.set_textures(textures_shader);
-			gun.draw(shader);
-
-			glDisable(GL_CULL_FACE);
-			shader_skybox.use();
-			cube.set_texture(texEnvironment);
-			cube.draw(shader_skybox);
-			glEnable(GL_CULL_FACE);
+			renderText(shader, "This is sample text", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));
+			renderText(shader, "(C) LearnOpenGL.com", 540.0f, 570.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
 		
 		main_program.end_loop();
 	}
@@ -341,6 +194,60 @@ void drawScene(Shader& shader, Mesh& mesh, vector<Texture>& textures)
 }
 
 
+GLuint textVAO, textVBO;
+void renderText(const Shader& shader, const string& text, GLfloat x, GLfloat y, 
+	GLfloat scale, const glm::vec3& color)
+{
+	if (!textVAO)
+	{
+		glGenVertexArrays(1, &textVAO);
+		glGenBuffers(1, &textVBO);
+		glBindVertexArray(textVAO);
+		glBindBuffer(GL_ARRAY_BUFFER, textVBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 4 * 6, NULL, GL_DYNAMIC_DRAW);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), 0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		glBindVertexArray(0);
+	}
+	shader.set3fv("textColor", color);
+	glActiveTexture(GL_TEXTURE0);
+	glBindVertexArray(textVAO);
+
+	string::const_iterator c;
+	for (c = text.begin(); c != text.end(); c++)
+	{
+		Character ch = Characters[*c];
+		GLfloat xpos = x + ch.bearing.x * scale;
+		GLfloat ypos = y - (ch.size.y - ch.bearing.y) * scale;
+
+		GLfloat width = ch.size.x * scale;
+		GLfloat height = ch.size.y * scale;
+		GLfloat vertices[6][4] =
+		{
+			{xpos,         ypos + height, 0.f, 0.f},
+			{xpos,         ypos,          0.f, 1.f},
+			{xpos + width, ypos,          1.f, 1.f},
+
+			{xpos,         ypos + height, 0.f, 0.f},
+			{xpos + width, ypos,          1.f, 1.f},
+			{xpos + width, ypos + height, 1.f, 0.f}
+		};
+
+		glBindTexture(GL_TEXTURE_2D, ch.textureID);
+		glBindBuffer(GL_ARRAY_BUFFER, textVBO);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		x += (ch.advance >> 6) * scale;
+	}
+	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+
 
 void cursorPosCallback(GLFWwindow* window, double xPos, double yPos)
 {
@@ -364,6 +271,7 @@ static void scrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 {
 	camera.processCameraZoom((float)yOffset);
 }
+
 
 GLuint loadTexture(const GLchar* path, bool gamma)
 {

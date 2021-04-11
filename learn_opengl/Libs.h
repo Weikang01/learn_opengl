@@ -58,6 +58,15 @@ struct Vertex
 	};
 };
 
+struct Character
+{
+	GLuint textureID;
+	glm::ivec2 size;
+	glm::ivec2 bearing;
+	GLuint advance;
+};
+
+
 struct Texture
 {
 	GLuint id;

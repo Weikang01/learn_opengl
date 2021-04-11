@@ -364,5 +364,11 @@
     <None Include="PBR_shader_fragment_env+spec.glsl">
       <Filter>shaders</Filter>
     </None>
+    <None Include="text_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="text_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
