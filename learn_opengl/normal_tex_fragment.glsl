@@ -2,7 +2,6 @@
 out vec4 color;
 
 in VS_OUT{
-    vec3 FragPos;
     vec2 TexCoord;
     vec3 TangentLightPos;
     vec3 TangentViewPos;

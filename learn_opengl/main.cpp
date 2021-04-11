@@ -84,6 +84,7 @@ int main()
 	// Setup some OpenGL options
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
+	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 	//glEnable(GL_CULL_FACE);
 	//glCullFace(GL_BACK);
 	//glPolygonMode(GL_FRONT, GL_FILL);
@@ -91,10 +92,14 @@ int main()
 
 	glViewport(0, 0, screen_width, screen_height);
 	// Setup and compile our shaders
-	Shader shader("PBR_shader_vertex.glsl", "PBR_shader_fragment_env.glsl");
-	Shader shader_noText("PBR_shader_vertex_noText.glsl", "PBR_shader_fragment_noText_env.glsl");
+	Shader shader("PBR_shader_vertex.glsl", "PBR_shader_fragment_env+spec.glsl");
+	Shader shader_noText("PBR_shader_vertex_noText.glsl", "PBR_shader_fragment_noText_env+spec.glsl");
 	Shader shader_skybox("PBR_skybox_vertex.glsl", "PBR_skybox_fragment.glsl");
 	Shader shader_irradiance("rectangular2cubemap_vertex.glsl", "PBR_irradiance_convolution_fragment.glsl");
+	Shader shader_prefiltConv("PBR_prefiltConv_shader_vertex.glsl", "PBR_prefiltConv_shader_fragment_noText.glsl");
+	Shader shader_BRDF("PBR_BRDF_vertex.glsl", "PBR_BRDF_fragment.glsl");
+	Shader shader_testQuad("vertex_screen.glsl", "fragment_singleTex.glsl");
+
 	// First. We get the relevant block indices
 	GLuint uniformBlockIndexShader = shader.getUniformBlockIndex("Matrices");
 	GLuint uniformBlockIndexShader_nt = shader_noText.getUniformBlockIndex("Matrices");
@@ -119,6 +124,8 @@ int main()
 	Mesh sphere = drawSphere(32, 32);
 	Mesh cube(Prim::cubeVertices);
 	Mesh quad(Prim::quadVertices);
+	Model gun("Models/Cerberus_by_Andrew_Maximov/Cerberus_LP.FBX");
+
 
 	// texture -- bool: import textures or not
 	Texture texEnvironment;
@@ -128,19 +135,19 @@ int main()
 	texEnvironment.id = hdrPtr[0];
 	texEnvironment.type = "environment_cubemap";
 	Texture texMetal;
-	texMetal.id = loadTexture("Images/pbr_rust/albedo.png");
+	texMetal.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_A.tga");
 	texMetal.type = "texture_diffuse";
 	Texture texMetal_roughness;
-	texMetal_roughness.id = loadTexture("Images/pbr_rust/roughness.png");
+	texMetal_roughness.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_R.tga");
 	texMetal_roughness.type = "texture_roughness";
 	Texture texMetal_normal;
-	texMetal_normal.id = loadTexture("Images/pbr_rust/normal.png");
+	texMetal_normal.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_N.tga");
 	texMetal_normal.type = "texture_normal";
 	Texture texMetal_metal;
-	texMetal_metal.id = loadTexture("Images/pbr_rust/metallic.png");
+	texMetal_metal.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_M.tga");
 	texMetal_metal.type = "texture_metallic";
 	Texture texMetal_ao;
-	texMetal_ao.id = loadTexture("Images/pbr_rust/ao.png");
+	texMetal_ao.id = loadTexture("Models/Cerberus_by_Andrew_Maximov/Textures/Cerberus_AO.tga");
 	texMetal_ao.type = "texture_ao";
 
 	// pbr: create an irradiance cubemap, and re-scale capture FBO to irradiance scale.
@@ -158,11 +165,6 @@ int main()
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	
-	glBindFramebuffer(GL_FRAMEBUFFER, environFBO);
-	glBindRenderbuffer(GL_RENDERBUFFER, environRBO);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
-
 	glm::mat4 projection = glm::perspective(glm::radians(90.f), 1.f, 0.1f, 10.f);
 	glm::mat4 views[] = {
 		glm::lookAt(glm::vec3(0.f), glm::vec3( 1.f,  0.f,  0.f), glm::vec3(0.f, -1.f,  0.f)),
@@ -174,6 +176,11 @@ int main()
 	};
 	cube.set_texture(texEnvironment);
 	shader_irradiance.setMat4fv("projection", projection);
+	
+
+	glBindFramebuffer(GL_FRAMEBUFFER, environFBO);
+	glBindRenderbuffer(GL_RENDERBUFFER, environRBO);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
 
 	glViewport(0, 0, 32, 32);
 	for (size_t i = 0; i < 6; i++)
@@ -185,18 +192,81 @@ int main()
 		cube.draw(shader_irradiance);
 	}
 
-	glBindTexture(GL_TEXTURE_2D, 0);
+	// pbr: create a pre-filter cubemap, and re-scale capture FBO to pre-filter scale.
+	// --------------------------------------------------------------------------------
+	Texture texPrefilter;
+	texPrefilter.type = "prefilter_cubemap";
+	glGenTextures(1, &texPrefilter.id);
+
+	glBindTexture(GL_TEXTURE_CUBE_MAP, texPrefilter.id);
+	for (size_t i = 0; i < 6; i++)
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F,
+			128, 128, 0, GL_RGB, GL_FLOAT, nullptr);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+
+	// pbr: run a quasi monte-carlo simulation on the environment lighting to create a prefilter (cube)map.
+	// ----------------------------------------------------------------------------------------------------
+	shader_prefiltConv.setMat4fv("projection", projection);
+	
+	unsigned int maxMipLevels = 5;
+	for (unsigned int mip = 0; mip < maxMipLevels; mip++)
+	{
+		unsigned int mipWidth = 128 * std::pow(.5f, mip);
+		unsigned int mipHeight = 128 * std::pow(.5f, mip);
+
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, mipWidth, mipHeight);
+		glViewport(0, 0, mipWidth, mipHeight);
+
+		float roughness = (float)mip / (float)(maxMipLevels - 1);
+		shader_prefiltConv.setFloat("roughness", roughness);
+		for (unsigned int i = 0; i < 6; i++)
+		{
+			shader_prefiltConv.setMat4fv("view", views[i]);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+				GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, texPrefilter.id, mip);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			cube.draw(shader_prefiltConv);
+		}
+	}
+	
+	Texture texBRDF;
+	texBRDF.type = "texture_brdf";
+	glGenTextures(1, &texBRDF.id);
+	glBindTexture(GL_TEXTURE_2D, texBRDF.id);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RG16F, 512, 512, 0, GL_RG, GL_FLOAT, nullptr);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glViewport(0, 0, 512, 512);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 512, 512);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texBRDF.id, 0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	quad.draw(shader_BRDF);
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
 	glViewport(0, 0, screen_width, screen_height);
 
 	double delta = glfwGetTime();
 
 	bool first = true;
 
-	vector<Texture> textures_shader = { texIrradiance, texMetal, texMetal_roughness, 
+
+	vector<Texture> textures_shader = { texIrradiance, texPrefilter, texBRDF, texMetal, texMetal_roughness,
 		texMetal_normal, texMetal_metal, texMetal_ao };
-	vector<Texture> textures_shader_noTex = { texIrradiance };
-	
+	vector<Texture> textures_shader_noTex = { texIrradiance, texPrefilter, texBRDF };
+
+	gun.set_textures(textures_shader);
+	gun.add_texture(texIrradiance);
+	gun.add_texture(texPrefilter);
+	gun.add_texture(texBRDF);
 
 	while (!main_program.shouldClose())
 	{
@@ -213,32 +283,23 @@ int main()
 			glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(projection));
 			glBufferSubData(GL_UNIFORM_BUFFER, sizeof(glm::mat4), sizeof(glm::mat4), glm::value_ptr(view));
 
+			//drawScene(shader, sphere, textures_shader);
+			shader.set3fv_vector("light", "position", lightPositions);
+			shader.set3fv_vector("light", "color", lightColors);
+			shader.set3fv("viewPos", camera.Position);
 			glm::mat4 model(1.0f);
-			//model = glm::translate(model, glm::vec3(-1.f, 0.f, 0.f));
-			//shader.set3fv_vector("light", "position", lightPositions);
-			//shader.set3fv_vector("light", "color", lightColors);
-			//shader.set3fv("viewPos", camera.Position);
-			//shader.setMat4fv("model", model);
-			//shader.setMat3fv("normalMat", getNormalMat(model));
-			//sphere.set_textures({ texIrradiance, texMetal,texMetal_roughness,texMetal_normal,texMetal_metal,texMetal_ao });
-			//sphere.draw(shader, GL_TRIANGLE_STRIP);
+			model = glm::rotate(model, glm::radians(90.f), glm::vec3(1.f, 0.f, 0.f));
+			model = glm::rotate(model, glm::radians(180.f), glm::vec3(0.f, 1.f, 0.f));
+			model = glm::rotate(model, glm::radians(90.f), glm::vec3(0.f, 0.f, -1.f));
+			model = glm::scale(model, glm::vec3(.03f));
+			shader.setMat4fv("model", model);
+			shader.setMat3fv("normalMat", getNormalMat(model));
 
-			drawScene(shader_noText, sphere, textures_shader_noTex);
-
-			//model = glm::mat4(1.f);
-			//model = glm::translate(model, glm::vec3(1.f, 0.f, 0.f));
-			//shader_noText.set3fv_vector("light", "position", lightPositions);
-			//shader_noText.set3fv_vector("light", "color", lightColors);
-			//shader_noText.set3fv("viewPos", camera.Position);
-			//shader_noText.setMat4fv("model", model);
-			//shader_noText.setMat3fv("normalMat", getNormalMat(model));
-			//sphere.set_texture({ texIrradiance });
-			//sphere.draw(shader_noText, GL_TRIANGLE_STRIP);
+			//gun.set_textures(textures_shader);
+			gun.draw(shader);
 
 			glDisable(GL_CULL_FACE);
 			shader_skybox.use();
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_CUBE_MAP, texEnvironment.id);
 			cube.set_texture(texEnvironment);
 			cube.draw(shader_skybox);
 			glEnable(GL_CULL_FACE);

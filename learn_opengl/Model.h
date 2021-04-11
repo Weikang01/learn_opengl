@@ -15,6 +15,9 @@ public:
 	Model(const GLchar* filePath, const vector<Texture>& textures);
 	void draw(Shader& shader);
 	void add_texture(const Texture texture);
+	void set_texture(const Texture textures);
+	void set_texture(const Texture texture, const unsigned int index);
+	void set_textures(const vector<Texture> textures);
 private:
 	bool customize_texture;
 	void loadModel(string const& path);

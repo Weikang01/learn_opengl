@@ -3,14 +3,21 @@ out vec4 fragColor;
 
 #define LIGHT_NR 4
 
+struct Light
+{
+    vec3 position;
+    vec3 color;
+};
+
+uniform Light light[LIGHT_NR];
+
 in VS_OUT{
     vec2 TexCoord;
-    vec3 TangentLightPos[LIGHT_NR];
-    vec3 LightColor[LIGHT_NR];
-    vec3 TangentViewPos;
-    vec3 TangentFragPos;
+    vec3 FragPos;
+    vec3 Normal;
 } fs_in;
 
+uniform vec3 viewPos;
 uniform samplerCube irradiance_cubemap;
 uniform sampler2D texture_diffuse1;
 uniform sampler2D texture_normal1;
@@ -29,6 +36,24 @@ float ao;
 
 
 const float PI = 3.14159265359f;
+
+vec3 getNormalFromMap()
+{
+    vec3 tangentNormal = texture(texture_normal1, fs_in.TexCoord).xyz * 2.f - 1.f;
+
+    vec3 Q1 = dFdx(fs_in.FragPos);
+    vec3 Q2 = dFdy(fs_in.FragPos);
+    vec2 st1 = dFdx(fs_in.TexCoord);
+    vec2 st2 = dFdy(fs_in.TexCoord);
+
+    vec3 N = normalize(fs_in.Normal);
+    vec3 T = normalize(Q1 * st2.t - Q2 * st1.t);
+    vec3 B = -normalize(cross(N, T));
+    mat3 TBN = mat3(T, B, N);
+
+    return normalize(TBN * tangentNormal);
+}
+
 
 float blinn_phong_NDF(vec3 halfway, vec3 normal)
 {
@@ -80,24 +105,22 @@ vec3 schlick_Fresnel_roughness(float cosTheta)
 void main()
 {
     albedo = pow(texture(texture_diffuse1, fs_in.TexCoord).rgb, vec3(2.2f));
-    normal = texture(texture_normal1, fs_in.TexCoord).rgb;
-    normal = normalize(normal * 2.f - 1.f);
     roughness = texture(texture_roughness1, fs_in.TexCoord).r;
     metallic = texture(texture_metallic1, fs_in.TexCoord).r;
     ao = texture(texture_ao1, fs_in.TexCoord).r;
 
-    vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos);
-
+    normal = getNormalFromMap();
+    vec3 viewDir = normalize(viewPos - fs_in.FragPos);
 
     vec3 lighting = vec3(0.f);
     for (int i = 0; i < LIGHT_NR; i++)
     {
-        vec3 lightDir   = normalize(fs_in.TangentLightPos[i] - fs_in.TangentFragPos);
+        vec3 lightDir   = normalize(light[i].position - fs_in.FragPos);
         vec3 halfwayDir = normalize(lightDir + viewDir);
 
-        float distance    = length(fs_in.TangentLightPos[i] - fs_in.TangentFragPos);
+        float distance    = length(light[i].position - fs_in.FragPos);
         float attenuation = 1.f / (distance * distance);
-        vec3 radiance     = fs_in.LightColor[i] * attenuation;
+        vec3 radiance     = light[i].color * attenuation;
 
         float NDF = blinn_phong_NDF(halfwayDir, normal);
         float G   = geometrySmith(normal, viewDir, lightDir);

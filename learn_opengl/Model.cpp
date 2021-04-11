@@ -31,6 +31,30 @@ void Model::add_texture(const Texture texture)
 	}
 }
 
+void Model::set_texture(const Texture texture)
+{
+	for (Mesh& mesh : meshes)
+	{
+		mesh.set_texture(texture);
+	}
+}
+
+void Model::set_texture(const Texture texture, const unsigned int index)
+{
+	for (Mesh& mesh : meshes)
+	{
+		mesh.set_texture(texture, index);
+	}
+}
+
+void Model::set_textures(const vector<Texture> textures)
+{
+	for (Mesh& mesh : meshes)
+	{
+		mesh.set_textures(textures);
+	}
+}
+
 void Model::loadModel(string const& path)
 {
 	Assimp::Importer importer;

@@ -346,5 +346,23 @@
     <None Include="PBR_irradiance_convolution_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
+    <None Include="PBR_prefiltConv_shader_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_prefiltConv_shader_fragment_noText.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_shader_fragment_noText_env+spec.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_BRDF_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_BRDF_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="PBR_shader_fragment_env+spec.glsl">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
