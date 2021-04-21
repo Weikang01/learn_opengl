@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CF0AD606-C9E8-3E20-A0B6-DF4767FCFDAE}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/github_sync/learn_opengl/libraries/assimp-5.0.1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -SD:/github_sync/learn_opengl/libraries/assimp-5.0.1 -BD:/github_sync/learn_opengl/libraries/assimp-5.0.1/build --check-stamp-file D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCXXInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeGenericSystem.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeInitializeConfigs.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeLanguageInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeParseArguments.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeRCInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckFunctionExists.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckIncludeFile.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckIncludeFileCXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckTypeSize.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\MSVC-C.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPackageMessage.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPkgConfig.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\WindowsPaths.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp-config-version.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp-config.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp.pc.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets-debug.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets-release.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeCCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeCXXCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeRCCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeSystem.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindDirectX.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindPkgMacros.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindZLIB.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\PrecompiledHeader.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\cmake_uninstall.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake\HunterGate.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include\assimp\config.h.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\revision.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/github_sync/learn_opengl/libraries/assimp-5.0.1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -SD:/github_sync/learn_opengl/libraries/assimp-5.0.1 -BD:/github_sync/learn_opengl/libraries/assimp-5.0.1/build --check-stamp-file D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCXXInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeGenericSystem.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeInitializeConfigs.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeLanguageInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeParseArguments.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeRCInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckFunctionExists.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckIncludeFile.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckIncludeFileCXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckTypeSize.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\MSVC-C.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPackageMessage.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPkgConfig.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\WindowsPaths.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp-config-version.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp-config.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp.pc.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets-debug.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets-release.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeCCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeCXXCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeRCCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeSystem.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindDirectX.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindPkgMacros.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindZLIB.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\PrecompiledHeader.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\cmake_uninstall.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake\HunterGate.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include\assimp\config.h.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\revision.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/github_sync/learn_opengl/libraries/assimp-5.0.1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -SD:/github_sync/learn_opengl/libraries/assimp-5.0.1 -BD:/github_sync/learn_opengl/libraries/assimp-5.0.1/build --check-stamp-file D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCXXInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeGenericSystem.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeInitializeConfigs.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeLanguageInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeParseArguments.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeRCInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckFunctionExists.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckIncludeFile.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckIncludeFileCXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckTypeSize.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\MSVC-C.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPackageMessage.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPkgConfig.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\WindowsPaths.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp-config-version.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp-config.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp.pc.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets-debug.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets-release.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeCCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeCXXCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeRCCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeSystem.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindDirectX.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindPkgMacros.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindZLIB.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\PrecompiledHeader.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\cmake_uninstall.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake\HunterGate.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include\assimp\config.h.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\revision.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/github_sync/learn_opengl/libraries/assimp-5.0.1/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -SD:/github_sync/learn_opengl/libraries/assimp-5.0.1 -BD:/github_sync/learn_opengl/libraries/assimp-5.0.1/build --check-stamp-file D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCXXInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeGenericSystem.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeInitializeConfigs.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeLanguageInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeParseArguments.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeRCInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckFunctionExists.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckIncludeFile.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckIncludeFileCXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\CheckTypeSize.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\MSVC-C.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPackageMessage.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\FindPkgConfig.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows-MSVC.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\Windows.cmake;C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\share\cmake-3.19\Modules\Platform\WindowsPaths.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp-config-version.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp-config.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimp.pc.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets-debug.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets-release.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\assimpTargets.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeCCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeCXXCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeRCCompiler.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\3.19.2\CMakeSystem.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindDirectX.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindPkgMacros.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindZLIB.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\PrecompiledHeader.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\cmake_uninstall.cmake.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake\HunterGate.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include\assimp\config.h.in;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\revision.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\ZERO_CHECK.vcxproj">
+      <Project>{FDF45187-C0AA-3A29-B440-07605393C0B8}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\irrXML\IrrXML.vcxproj">
+      <Project>{6A8EB26A-7DF6-3A01-8EDD-FC29D6FAFAFE}</Project>
+      <Name>IrrXML</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\assimp.vcxproj">
+      <Project>{C8C288B5-96E0-34DE-BD33-5F3270420F7E}</Project>
+      <Name>assimp</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_cmd\assimp_cmd.vcxproj">
+      <Project>{30D6E060-3760-3AF1-BF00-8227A32F038F}</Project>
+      <Name>assimp_cmd</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_view\assimp_viewer.vcxproj">
+      <Project>{3602633F-93F7-3B86-9A42-E35502D1953F}</Project>
+      <Name>assimp_viewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\test\unit.vcxproj">
+      <Project>{989F5849-C999-3464-9C7D-BDAA3F89C48E}</Project>
+      <Name>unit</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib\zlib.vcxproj">
+      <Project>{5DD73126-F1DF-37D9-84F6-6EFF348144E9}</Project>
+      <Name>zlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib\zlibstatic.vcxproj">
+      <Project>{99F9CFF7-A1A3-352C-BC9E-99D3A2A7EECF}</Project>
+      <Name>zlibstatic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

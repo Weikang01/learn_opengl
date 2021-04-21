@@ -63,17 +63,36 @@ void Shader::loadProgram(unsigned int vertexId, unsigned int fragmentId, unsigne
 	if (geometryId) { glDeleteShader(geometryId); }
 }
 
-Shader::Shader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile)
-	:texSlotCounter(0)
+Shader::Shader()
+	:texSlotCounter(0), id(0)
 {
-	unsigned int vertexId = loadShader(vertexShaderFile, GL_VERTEX_SHADER);
-	unsigned int fragmentId = loadShader(fragmentShaderFile, GL_FRAGMENT_SHADER);
-	unsigned int geometryId = geometryShaderFile ? loadShader(geometryShaderFile, GL_GEOMETRY_SHADER) : 0;
-	loadProgram(vertexId, fragmentId, geometryId);
+}
+
+Shader::Shader(const Shader& shader)
+	:id(shader.id), texSlotCounter(shader.texSlotCounter)
+{}
+
+Shader::Shader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometryShaderFile)
+	: id(0), texSlotCounter(0)
+{
+	compile(vertexShaderFile, fragmentShaderFile, geometryShaderFile);
 }
 
 Shader::Shader(int dummy, const char* vertexShaderCode, const char* fragmentShaderCode, const char* geometricShaderCode)
-	:texSlotCounter(0)
+	: id(0), texSlotCounter(0)
+{
+	compile(0, vertexShaderCode, fragmentShaderCode, geometricShaderCode);
+}
+
+void Shader::compile(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometricShaderFile)
+{
+	unsigned int vertexId = loadShader(vertexShaderFile, GL_VERTEX_SHADER);
+	unsigned int fragmentId = loadShader(fragmentShaderFile, GL_FRAGMENT_SHADER);
+	unsigned int geometryId = geometricShaderFile ? loadShader(geometricShaderFile, GL_GEOMETRY_SHADER) : 0;
+	loadProgram(vertexId, fragmentId, geometryId);
+}
+
+void Shader::compile(int dummy, const char* vertexShaderCode, const char* fragmentShaderCode, const char* geometricShaderCode)
 {
 	unsigned int vertexId = loadShader(vertexShaderCode, GL_VERTEX_SHADER, 0);
 	unsigned int fragmentId = loadShader(fragmentShaderCode, GL_FRAGMENT_SHADER, 0);
@@ -81,14 +100,79 @@ Shader::Shader(int dummy, const char* vertexShaderCode, const char* fragmentShad
 	loadProgram(vertexId, fragmentId, geometryId);
 }
 
+void Shader::compile_debug(const char* vertexSource, const char* fragmentSource, const char* geometrySource)
+{
+	unsigned int sVertex, sFragment, gShader;
+	// vertex Shader
+	sVertex = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(sVertex, 1, &vertexSource, NULL);
+	glCompileShader(sVertex);
+	checkCompileErrors(sVertex, "VERTEX");
+	// fragment Shader
+	sFragment = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(sFragment, 1, &fragmentSource, NULL);
+	glCompileShader(sFragment);
+	checkCompileErrors(sFragment, "FRAGMENT");
+	// if geometry shader source code is given, also compile geometry shader
+	if (geometrySource != nullptr)
+	{
+		gShader = glCreateShader(GL_GEOMETRY_SHADER);
+		glShaderSource(gShader, 1, &geometrySource, NULL);
+		glCompileShader(gShader);
+		checkCompileErrors(gShader, "GEOMETRY");
+	}
+	// shader program
+	this->id = glCreateProgram();
+	glAttachShader(this->id, sVertex);
+	glAttachShader(this->id, sFragment);
+	if (geometrySource != nullptr)
+		glAttachShader(this->id, gShader);
+	glLinkProgram(this->id);
+	checkCompileErrors(this->id, "PROGRAM");
+	// delete the shaders as they're linked into our program now and no longer necessary
+	glDeleteShader(sVertex);
+	glDeleteShader(sFragment);
+	if (geometrySource != nullptr)
+		glDeleteShader(gShader);
+}
+
 Shader::~Shader()
 {
 	glDeleteProgram(id);
 }
 
-void Shader::use()
+void Shader::checkCompileErrors(unsigned int object, std::string type)
+{
+	int success;
+	char infoLog[1024];
+	if (type != "PROGRAM")
+	{
+		glGetShaderiv(object, GL_COMPILE_STATUS, &success);
+		if (!success)
+		{
+			glGetShaderInfoLog(object, 1024, NULL, infoLog);
+			std::cout << "| ERROR::SHADER: Compile-time error: Type: " << type << "\n"
+				<< infoLog << "\n -- --------------------------------------------------- -- "
+				<< std::endl;
+		}
+	}
+	else
+	{
+		glGetProgramiv(object, GL_LINK_STATUS, &success);
+		if (!success)
+		{
+			glGetProgramInfoLog(object, 1024, NULL, infoLog);
+			std::cout << "| ERROR::Shader: Link-time error: Type: " << type << "\n"
+				<< infoLog << "\n -- --------------------------------------------------- -- "
+				<< std::endl;
+		}
+	}
+}
+
+Shader& Shader::use()
 {
 	glUseProgram(id);
+	return *this;
 }
 
 int Shader::getUniformLocation(const string& name) const
@@ -520,3 +604,4 @@ void Shader::setMat4fv_vector(const string& listName, const string& memberName, 
 	for (size_t i = 0; i < size; i++)
 		setMat4fv(getUniformLocation(listName + "[" + std::to_string(i) + "]." + memberName), mat, transpose);
 }
+

@@ -1,4 +1,5 @@
 #include "Model.h"
+#include "AssimpGLMHelper.h"
 
 Model::Model(const GLchar* filePath)
 {
@@ -55,11 +56,43 @@ void Model::set_textures(const vector<Texture> textures)
 	}
 }
 
+void Model::extractBoneWeightForVertices(vector<Vertex>& vertices, aiMesh* mesh, const aiScene* scene)
+{
+	for (int boneIndex = 0; boneIndex < mesh->mNumBones; boneIndex++)
+	{
+		int boneID = -1;
+		string boneName = mesh->mBones[boneIndex]->mName.C_Str();
+		
+		if (boneInfoMap.find(boneName)== boneInfoMap.end())
+		{
+			boneInfo newBoneInfo;
+			newBoneInfo.id = boneCounter;
+			newBoneInfo.offset = AssimpGLMHelper::convertMatrix2GLMFormat(
+				mesh->mBones[boneIndex]->mOffsetMatrix);
+			boneInfoMap[boneName] = newBoneInfo;
+			boneID = boneCounter;
+			boneCounter++;
+		}
+		else
+			boneID = boneInfoMap[boneName].id;
+		assert(boneID != -1);
+		auto weights = mesh->mBones[boneIndex]->mWeights;
+		int numWeight = mesh->mBones[boneIndex]->mNumWeights;
+		for (size_t i = 0; i < numWeight; i++)
+		{
+			int vertexID = weights[i].mVertexId;
+			float weight = weights[i].mWeight;
+			assert(vertexID <= vertices.size());
+			vertices[vertexID].setBoneData(boneID, weight);
+		}
+	}
+}
+
 void Model::loadModel(string const& path)
 {
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
-
+	//const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_CalcTangentSpace);
 	if (!scene||scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE||!scene->mRootNode)
 	{
 		cout << "ERROR::ASSIMP::" << importer.GetErrorString() << endl;
@@ -81,7 +114,7 @@ void Model::processNode(aiNode* node, const aiScene* scene)
 		this->processNode(node->mChildren[i], scene);
 	}
 }
-
+int a = 0;
 Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 {
 	vector<Vertex>       vertices{};
@@ -91,22 +124,13 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 	for (size_t i = 0; i < mesh->mNumVertices; i++)
 	{
 		Vertex vertex;
-		glm::vec3 vector;
-		vector.x = mesh->mVertices[i].x;
-		vector.y = mesh->mVertices[i].y;
-		vector.z = mesh->mVertices[i].z;
-		vertex.position = vector;
+		vertex.setVertexBoneDataToDefault();
+
+		vertex.position = AssimpGLMHelper::getGLMVec3(mesh->mVertices[i]);
 		if (mesh->HasNormals())
-		{
-			vector.x = mesh->mNormals[i].x;
-			vector.y = mesh->mNormals[i].y;
-			vector.z = mesh->mNormals[i].z;
-			vertex.normal = vector;
-		}
+			vertex.normal = AssimpGLMHelper::getGLMVec3(mesh->mNormals[i]);
 		else
-		{
 			vertex.normal = glm::vec3(0.f, 1.f, 0.f);
-		}
 		if (mesh->mTextureCoords[0])
 		{
 			glm::vec2 vec;
@@ -120,14 +144,8 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 		}
 		if (mesh->HasTangentsAndBitangents())
 		{
-			vector.x = mesh->mTangents[i].x;
-			vector.y = mesh->mTangents[i].y;
-			vector.z = mesh->mTangents[i].z;
-			vertex.tangent = vector;
-			vector.x = mesh->mBitangents[i].x;
-			vector.y = mesh->mBitangents[i].y;
-			vector.z = mesh->mBitangents[i].z;
-			vertex.bitangent = vector;
+			vertex.tangent = AssimpGLMHelper::getGLMVec3(mesh->mTangents[i]);
+			vertex.bitangent = AssimpGLMHelper::getGLMVec3(mesh->mBitangents[i]);
 		}
 		else
 		{
@@ -135,6 +153,9 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 		}
 		vertices.push_back(vertex);
 	}
+
+	extractBoneWeightForVertices(vertices, mesh, scene);
+
 	for (size_t i = 0; i < mesh->mNumFaces; i++)
 	{
 		aiFace face = mesh->mFaces[i];

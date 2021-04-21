@@ -3,6 +3,8 @@
 #include "Model.h"
 #include "Structures.h"
 #include "Primitive.h"
+#include "Animation.h"
+#include "Animator.h"
 
 #include FT_FREETYPE_H
 #define APIENTRY GLAPIENTRY
@@ -15,7 +17,6 @@ void GLClearError()
 {
 	while (glGetError() != GL_NO_ERROR);
 }
-
 bool GLLogCall(const char* function, const char* file, int line)
 {
 	while (GLenum errorCode = glGetError())
@@ -87,9 +88,9 @@ int main()
 
 	// Setup some OpenGL options
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//glEnable(GL_CULL_FACE);
 	//glCullFace(GL_BACK);
 	//glPolygonMode(GL_FRONT, GL_FILL);
@@ -97,7 +98,11 @@ int main()
 
 	glViewport(0, 0, screen_width, screen_height);
 	// Setup and compile our shaders
-	Shader shader("text_vertex.glsl", "text_fragment.glsl");
+	Shader shader("skeletalAnimation_vertex.glsl", "skeletalAnimation_fragment.glsl");
+
+	Model ourModel("Models/vampire/dancing_vampire.dae");
+	Animation danceAnimation("Models/vampire/dancing_vampire.dae", &ourModel);
+	Animator animator(&danceAnimation);
 
 	Mesh quad(Prim::quadVertices);
 	double delta = glfwGetTime();
@@ -138,24 +143,48 @@ int main()
 		glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top), face->glyph->advance.x };
 		Characters.insert(std::pair<GLchar, Character>(c, character));
 	}
-	Characters['x'];
 	FT_Done_Face(face);
 	FT_Done_FreeType(ft);
 
-	glm::mat4 projection = glm::ortho(0.f, float(screen_width), 0.f, float(screen_height));
+	glm::mat4 projection = glm::perspective(camera.getFOV(), float(screen_width) / float(screen_height), 0.1f, 100.f);
 	shader.setMat4fv("projection", projection);
+	
+	GLfloat delta_time;
+	GLfloat last_time = glfwGetTime();
+
+	//cout << ourModel.getBoneCount() << endl;
+	//for (size_t i = 0; i < ourModel.meshes[0].vertices.size(); i++)
+	//{
+	//	for (size_t j = 0; j < 4; j++)
+	//	{
+	//		cout << ourModel.meshes[0].vertices[i].boneIDs[j] << endl;
+	//	}
+	//}
 
 	while (!main_program.shouldClose())
 	{
-		main_program.begin_loop();
-		main_program.do_movement(camera);
-		glClearColor(0.1f, 0.1f, 0.1f, 1.f);
-		// generate gBuffer
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			//quad.draw(shader);
+		GLfloat current_time = glfwGetTime();
+		delta_time = current_time - last_time;
+		last_time = current_time;
 
-			renderText(shader, "This is sample text", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));
-			renderText(shader, "(C) LearnOpenGL.com", 540.0f, 570.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
+		main_program.begin_loop();
+		main_program.do_movement(camera, delta_time);
+		animator.updateAnimation(delta_time);
+
+		// render
+		glClearColor(0.1f, 0.1f, 0.1f, 1.f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			shader.setMat4fv("view", camera.getView());
+
+			vector<glm::mat4> finalBoneMatrices = animator.getFinalBoneMatrices();
+
+			shader.setMat4fv_vector("finalBonesMatrices", finalBoneMatrices);
+
+			glm::mat4 model(1.f);
+			model = glm::translate(model, glm::vec3(0.0f, -2.f, -1.f));
+			model = glm::scale(model, glm::vec3(.5f));
+			shader.setMat4fv("model", model);
+			ourModel.draw(shader);
 		
 		main_program.end_loop();
 	}

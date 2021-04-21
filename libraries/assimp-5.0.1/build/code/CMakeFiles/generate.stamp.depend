@@ -1,0 +1,5 @@
+# CMake generation dependency list for this directory.
+C:/Users/weikang/cmake-3.19.2-win64-x64/cmake-3.19.2-win64-x64/share/cmake-3.19/Modules/FindPackageHandleStandardArgs.cmake
+C:/Users/weikang/cmake-3.19.2-win64-x64/cmake-3.19.2-win64-x64/share/cmake-3.19/Modules/FindPackageMessage.cmake
+D:/github_sync/learn_opengl/libraries/assimp-5.0.1/cmake-modules/FindRT.cmake
+D:/github_sync/learn_opengl/libraries/assimp-5.0.1/code/CMakeLists.txt

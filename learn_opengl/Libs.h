@@ -42,6 +42,8 @@ void printVec3(glm::vec3 v);
 void printMat4(glm::mat4 m);
 void printMat3(glm::mat3 m);
 
+#define MAX_BONE_INFLUENCE 4
+
 struct Vertex
 {
 	glm::vec3 position;
@@ -49,13 +51,57 @@ struct Vertex
 	glm::vec2 texCoord;
 	glm::vec3 tangent;
 	glm::vec3 bitangent;
+	int boneIDs[MAX_BONE_INFLUENCE];
+	float boneWeights[MAX_BONE_INFLUENCE];
 	Vertex() = default;
-	Vertex(const glm::vec3 p, const glm::vec3 n, const glm::vec2 t) { position = p; normal = n; texCoord = t; tangent = bitangent = glm::vec3(0.f); };
-	Vertex(const glm::vec3 p, const glm::vec2 t) {
-		position = p; texCoord = t; 
-		normal = glm::vec3(0.f, 1.f, 0.f); 
-		tangent = bitangent = glm::vec3(0.f);
+	Vertex(const glm::vec3 p, const glm::vec3 n, const glm::vec2 t) :boneWeights{ 0.f }
+	{ position = p; normal = n; texCoord = t; tangent = bitangent = glm::vec3(0.f);
+	for (size_t i = 0; i < MAX_BONE_INFLUENCE; i++)
+		boneIDs[i] = -1;
 	};
+	Vertex(const glm::vec3 p, const glm::vec2 t) :boneWeights{ 0.f }
+	{
+		position = p; texCoord = t;
+		normal = glm::vec3(0.f, 1.f, 0.f);
+		tangent = bitangent = glm::vec3(0.f);
+		for (size_t i = 0; i < MAX_BONE_INFLUENCE; i++)
+			boneIDs[i] = -1;
+	};
+	void setVertexBoneDataToDefault()
+	{
+		for (size_t i = 0; i < MAX_BONE_INFLUENCE; i++)
+		{
+			boneIDs[i] = -1;
+			boneWeights[i] = 0.f;
+		}
+	}
+	void setBoneData(int boneID, float weight)
+	{
+		for (size_t i = 0; i < MAX_BONE_INFLUENCE; i++)
+		{
+			if (boneIDs[i] < 0)
+			{
+				boneWeights[i] = weight;
+				boneIDs[i] = boneID;
+				break;
+			}
+		}
+	}
+};
+
+struct Vertex2D
+{
+	glm::vec4 vertex; // < position, texCoord>
+	Vertex2D() = default;
+	Vertex2D(const glm::vec2 position, const glm::vec2 texCoord) : vertex(position.x, position.y, texCoord.x, texCoord.y)
+	{}
+	Vertex2D(const Vertex& v3) : vertex(v3.position.x, v3.position.y, v3.texCoord.x, v3.texCoord.y)
+	{}
+	Vertex2D& operator=(const Vertex& v3)
+	{
+		vertex = glm::vec4(v3.position.x, v3.position.y, v3.texCoord.x, v3.texCoord.y);
+		return *this;
+	}
 };
 
 struct Character

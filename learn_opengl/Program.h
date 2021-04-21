@@ -10,7 +10,7 @@ private:
 public:
 	Program(const int screen_width, const int screen_height);
 	~Program();
-	void do_movement(Camera& camera);
+	void do_movement(Camera& camera, GLfloat delta_time);
 	
 	int shouldClose();
 	void begin_loop();

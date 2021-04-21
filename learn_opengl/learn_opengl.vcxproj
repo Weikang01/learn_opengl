@@ -94,7 +94,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(solutionDir)libraries\freetype\lib;$(solutionDir)libraries\ASSIMP\lib;$(solutionDir)libraries\GLEW\lib;$(solutionDir)libraries\GLFW\lib;$(solutionDir)libraries\freetype\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>freetype.lib;assimp.lib;opengl32.lib;glew32s.lib;glew32.lib;glfw3dll.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freetype.lib;assimp-vc142-mt.lib;opengl32.lib;glew32s.lib;glew32.lib;glfw3dll.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -113,7 +113,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(solutionDir)libraries\freetype\lib;$(solutionDir)libraries\ASSIMP\lib;$(solutionDir)libraries\GLEW\lib;$(solutionDir)libraries\GLFW\lib;$(solutionDir)libraries\freetype\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>freetype.lib;assimp.lib;opengl32.lib;glew32s.lib;glew32.lib;glfw3dll.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freetype.lib;assimp-vc142-mt.lib;opengl32.lib;glew32s.lib;glew32.lib;glfw3dll.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -145,26 +145,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="Bone.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Libs.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Program.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Structures.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="AssimpGLMHelper.h" />
+    <ClInclude Include="Bone.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Libs.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Program.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Structures.h" />
+    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="blinn_fragment.glsl" />
@@ -249,6 +264,10 @@
     <None Include="shadow_mapping_vertex.glsl" />
     <None Include="simpleDepth_fragment.glsl" />
     <None Include="simpleDepth_vertex.glsl" />
+    <None Include="skeletalAnimation_fragment.glsl" />
+    <None Include="skeletalAnimation_vertex.glsl" />
+    <None Include="sprite_fragment.glsl" />
+    <None Include="sprite_vertex.glsl" />
     <None Include="SSAO_deferShader_fragment.glsl" />
     <None Include="SSAO_deferShader_vertex.glsl" />
     <None Include="SSAO_shader_fragment.glsl" />

@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3602633F-93F7-3B86-9A42-E35502D1953F}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>assimp_viewer</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_view\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">assimp_viewer.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">assimp_viewerd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_view\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">assimp_viewer.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">assimp_viewer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_view\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">assimp_viewer.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">assimp_viewer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_view\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">assimp_viewer.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">assimp_viewer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;EBUG:FULL;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;EBUG:FULL;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -E copy_if_different D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/code/Debug/assimp-vc142-mtd.dll D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\Debug\assimp-vc142-mtd.lib;E:\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d9.lib;E:\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx9.lib;comctl32.lib;winmm.lib;..\..\contrib\zlib\Debug\zlibstaticd.lib;..\..\contrib\irrXML\Debug\IrrXMLd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build;D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/$(Configuration);/lib;/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/Debug/assimp_viewerd.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/Debug/assimp_viewerd.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -E copy_if_different D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/code/Release/assimp-vc142-mt.dll D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/Release
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\Release\assimp-vc142-mt.lib;E:\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d9.lib;E:\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx9.lib;comctl32.lib;winmm.lib;..\..\contrib\zlib\Release\zlibstatic.lib;..\..\contrib\irrXML\Release\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build;D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/$(Configuration);/lib;/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/Release/assimp_viewer.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/Release/assimp_viewer.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -E copy_if_different D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/code/MinSizeRel/assimp-vc142-mt.dll D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\MinSizeRel\assimp-vc142-mt.lib;E:\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d9.lib;E:\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx9.lib;comctl32.lib;winmm.lib;..\..\contrib\zlib\MinSizeRel\zlibstatic.lib;..\..\contrib\irrXML\MinSizeRel\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build;D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/$(Configuration);/lib;/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/MinSizeRel/assimp_viewer.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/MinSizeRel/assimp_viewer.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\.;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\contrib\zlib;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib;E:\Microsoft DirectX SDK (June 2010)\Include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\code\..\include;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -E copy_if_different D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/code/RelWithDebInfo/assimp-vc142-mt.dll D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\RelWithDebInfo\assimp-vc142-mt.lib;E:\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d9.lib;E:\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx9.lib;comctl32.lib;winmm.lib;..\..\contrib\zlib\RelWithDebInfo\zlibstatic.lib;..\..\contrib\irrXML\RelWithDebInfo\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build;D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/$(Configuration);/lib;/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/RelWithDebInfo/assimp_viewer.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/RelWithDebInfo/assimp_viewer.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/github_sync/learn_opengl/libraries/assimp-5.0.1/tools/assimp_view/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -SD:/github_sync/learn_opengl/libraries/assimp-5.0.1 -BD:/github_sync/learn_opengl/libraries/assimp-5.0.1/build --check-stamp-file D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindDirectX.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindPkgMacros.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_view\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/github_sync/learn_opengl/libraries/assimp-5.0.1/tools/assimp_view/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -SD:/github_sync/learn_opengl/libraries/assimp-5.0.1 -BD:/github_sync/learn_opengl/libraries/assimp-5.0.1/build --check-stamp-file D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindDirectX.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindPkgMacros.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_view\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/github_sync/learn_opengl/libraries/assimp-5.0.1/tools/assimp_view/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -SD:/github_sync/learn_opengl/libraries/assimp-5.0.1 -BD:/github_sync/learn_opengl/libraries/assimp-5.0.1/build --check-stamp-file D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindDirectX.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindPkgMacros.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_view\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/github_sync/learn_opengl/libraries/assimp-5.0.1/tools/assimp_view/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+C:\Users\weikang\cmake-3.19.2-win64-x64\cmake-3.19.2-win64-x64\bin\cmake.exe -SD:/github_sync/learn_opengl/libraries/assimp-5.0.1 -BD:/github_sync/learn_opengl/libraries/assimp-5.0.1/build --check-stamp-file D:/github_sync/learn_opengl/libraries/assimp-5.0.1/build/tools/assimp_view/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindDirectX.cmake;D:\github_sync\learn_opengl\libraries\assimp-5.0.1\cmake-modules\FindPkgMacros.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\tools\assimp_view\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\AnimEvaluator.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\Background.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\Display.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\HelpDialog.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\Input.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\LogDisplay.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\LogWindow.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\Material.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\MeshRenderer.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\MessageProc.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\Normals.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\SceneAnimator.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\Shaders.cpp" />
+    <ClInclude Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\assimp_view.h" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\assimp_view.cpp" />
+    <ClCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\stdafx.cpp" />
+    <ResourceCompile Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\assimp_view.rc" />
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\banner.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\banner_pure.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\base_anim.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\base_display.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\base_inter.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\base_rendering.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\base_stats.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\fx.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\n.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\root.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\tx.bmp">
+    </None>
+    <None Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\tools\assimp_view\txi.bmp">
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\ZERO_CHECK.vcxproj">
+      <Project>{FDF45187-C0AA-3A29-B440-07605393C0B8}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\irrXML\IrrXML.vcxproj">
+      <Project>{6A8EB26A-7DF6-3A01-8EDD-FC29D6FAFAFE}</Project>
+      <Name>IrrXML</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\code\assimp.vcxproj">
+      <Project>{C8C288B5-96E0-34DE-BD33-5F3270420F7E}</Project>
+      <Name>assimp</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\github_sync\learn_opengl\libraries\assimp-5.0.1\build\contrib\zlib\zlibstatic.vcxproj">
+      <Project>{99F9CFF7-A1A3-352C-BC9E-99D3A2A7EECF}</Project>
+      <Name>zlibstatic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

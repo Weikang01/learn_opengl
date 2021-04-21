@@ -2,8 +2,7 @@
 
 static bool keys[1024];
 //float lastX, lastY;
-GLfloat delta_time;
-GLfloat last_time;
+
 
 void readFile(const char* fileName, string& target)
 {
@@ -77,10 +76,6 @@ void Program::begin_loop()
 
 void Program::end_loop()
 {
-	GLfloat current_time = glfwGetTime();
-	delta_time = current_time - last_time;
-	last_time = current_time;
-
 	glUseProgram(0);
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -88,7 +83,7 @@ void Program::end_loop()
 	glfwPollEvents();
 }
 
-void Program::do_movement(Camera& camera)
+void Program::do_movement(Camera& camera, GLfloat delta_time)
 {
 	if (keys[GLFW_KEY_W])
 	{

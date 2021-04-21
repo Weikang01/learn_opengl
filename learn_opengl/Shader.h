@@ -4,19 +4,28 @@
 class Shader
 {
 public:
-	//vector<string> texNameList;
 	unsigned int texSlotCounter;
 private:
 	unsigned int id;
+
 	unsigned int loadShader(const char* code, GLenum type, int dummy);
 	unsigned int loadShader(const char* fileName, GLenum type);
 	void loadProgram(unsigned int vertexId, unsigned int fragmentId, unsigned int geometryId);
 public:
+	Shader();
+	Shader(const Shader& shader);
 	Shader(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometricShaderFile = nullptr);
 	Shader(int dummy, const char* vertexShaderCode, const char* fragmentShaderCode, const char* geometricShaderCode = nullptr);
+
+	void compile(const char* vertexShaderFile, const char* fragmentShaderFile, const char* geometricShaderFile = nullptr);
+	void compile(int dummy, const char* vertexShaderCode, const char* fragmentShaderCode, const char* geometricShaderCode = nullptr);
+	void compile_debug(const char* vertexSource, const char* fragmentSource, const char* geometrySource);
 	~Shader();
 	unsigned int getId()const { return id; }
-	void use();
+	void setId(unsigned int id) { this->id = id; }
+
+	void checkCompileErrors(unsigned int object, std::string type);
+	Shader& use();
 	//void bindTextures(Texture* textures);
 	//void bindTexture(Texture& texture, unsigned int idx);
 	int getUniformLocation(const string& name) const;

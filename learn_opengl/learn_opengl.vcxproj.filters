@@ -19,6 +19,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="shaders\breakout">
+      <UniqueIdentifier>{e46ed770-f5a7-4345-ac38-9970fb4e12f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp">
@@ -48,6 +51,27 @@
     <ClCompile Include="Model.cpp">
       <Filter>cpps</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Bone.cpp">
+      <Filter>cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>cpps</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>cpps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h">
@@ -75,6 +99,30 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Primitive.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AssimpGLMHelper.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Bone.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -368,6 +416,18 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="text_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="sprite_vertex.glsl">
+      <Filter>shaders\breakout</Filter>
+    </None>
+    <None Include="sprite_fragment.glsl">
+      <Filter>shaders\breakout</Filter>
+    </None>
+    <None Include="skeletalAnimation_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="skeletalAnimation_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

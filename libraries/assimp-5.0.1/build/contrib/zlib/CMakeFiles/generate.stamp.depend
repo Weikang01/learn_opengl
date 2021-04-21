@@ -1,0 +1,10 @@
+# CMake generation dependency list for this directory.
+C:/Users/weikang/cmake-3.19.2-win64-x64/cmake-3.19.2-win64-x64/share/cmake-3.19/Modules/CheckCSourceCompiles.cmake
+C:/Users/weikang/cmake-3.19.2-win64-x64/cmake-3.19.2-win64-x64/share/cmake-3.19/Modules/CheckFunctionExists.cmake
+C:/Users/weikang/cmake-3.19.2-win64-x64/cmake-3.19.2-win64-x64/share/cmake-3.19/Modules/CheckIncludeFile.cmake
+C:/Users/weikang/cmake-3.19.2-win64-x64/cmake-3.19.2-win64-x64/share/cmake-3.19/Modules/CheckIncludeFileCXX.cmake
+C:/Users/weikang/cmake-3.19.2-win64-x64/cmake-3.19.2-win64-x64/share/cmake-3.19/Modules/CheckTypeSize.cmake
+C:/Users/weikang/cmake-3.19.2-win64-x64/cmake-3.19.2-win64-x64/share/cmake-3.19/Modules/Internal/CheckSourceCompiles.cmake
+D:/github_sync/learn_opengl/libraries/assimp-5.0.1/contrib/zlib/CMakeLists.txt
+D:/github_sync/learn_opengl/libraries/assimp-5.0.1/contrib/zlib/zconf.h.cmakein
+D:/github_sync/learn_opengl/libraries/assimp-5.0.1/contrib/zlib/zlib.pc.cmakein
