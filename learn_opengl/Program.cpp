@@ -29,6 +29,7 @@ Program::Program(const int screen_width, const int screen_height)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, WINDOW_VERSION_MAJOR);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, WINDOW_VERSION_MINOR);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	//glfwWindowHint(GLFW_SAMPLES, 4);
 	
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
@@ -55,11 +56,7 @@ Program::Program(const int screen_width, const int screen_height)
 	glfwSetWindowSizeCallback(m_window,
 		[](GLFWwindow* window, int width, int height) {glViewport(0, 0, width, height);});
 
-	// openGL options
-	glPolygonMode(GL_FRONT, GL_FILL);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_DEPTH_TEST);
+	stbi_set_flip_vertically_on_load(true);
 }
 
 Program::~Program()
@@ -75,8 +72,7 @@ int Program::shouldClose()
 void Program::begin_loop()
 {
 	// clearcolor ClearColor Clearcolor
-	glClearColor(.07f, .06f, .05f, 1.f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glfwPollEvents();
 }
 
 void Program::end_loop()
